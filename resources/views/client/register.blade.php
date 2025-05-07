@@ -1,5 +1,5 @@
 <x-pengunjung-layout>
-  <div class="w-full min-h-screen flex justify-center items-center font-inter overflow-hidden ">
+  <div class="w-full h-screen flex justify-center items-center font-inter overflow-hidden ">
       <div class="bg-white p-10 flex lg:flex-row flex-col   rounded-lg lg:shadow-2xl lg:border lg:border-gray-100 ">
           <div class="flex justify-center items-center lg:border-r-2 lg:border-gray-100 pr-5">
               <img src="{{ asset('img/logo/smart-logo.svg') }}" alt="" class="w-[200px]">
