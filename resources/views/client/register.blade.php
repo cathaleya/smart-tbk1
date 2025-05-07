@@ -1,6 +1,6 @@
 <x-pengunjung-layout>
-  <div class="w-full h-screen flex justify-center items-center font-inter overflow-hidden ">
-      <div class="bg-white p-10 flex lg:flex-row flex-col   rounded-lg lg:shadow-2xl lg:border lg:border-gray-100 "  data-aos="fade-up">
+  <div class="w-full h-screen flex justify-center items-center font-inter overflow-hidden bg-gray-100">
+      <div class=" p-10 flex lg:flex-row flex-col   rounded-lg bg-white shadow-2xl"  data-aos="fade-up">
           <div class="flex justify-center items-center lg:border-r-2 lg:border-gray-100 pr-5">
               <img src="{{ asset('img/logo/smart-logo.svg') }}" alt="" class="w-[200px]">
           </div>
