@@ -3,8 +3,12 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('client.home');
-});
+    return view('client.login');
+})->name('login');
+
+Route::get('/register', function () {
+    return view('client.register');
+})->name('register');
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
@@ -19,3 +23,4 @@ Route::get('/warehouse', function () {
 Route::get('/transport', function () {
     return view('admin.delivery-order');
 })->name('transport');
+

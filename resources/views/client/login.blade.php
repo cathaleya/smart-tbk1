@@ -15,23 +15,24 @@
                         <tr>
                             <td class="p-2"><label for="" class="capitalize">email</label></td>
                             <td class="p-2"><input type="text"
-                                    class="py-1 px-5 focus:outline-none border-2 border-red-500 rounded-xl"
+                                    class="py-1 px-5 focus:outline-none border-2  rounded-xl focus:ring ring-red-500 focus:border-red-500"
                                     placeholder="user@gmail.com"></td>
                         </tr>
                         <tr>
                             <td class="p-2"><label for="" class="capitalize">password</label></td>
                             <td class="p-2"><input type="text"
-                                    class="py-1 px-5 focus:outline-none border-2 border-red-500 rounded-xl"
+                                    class="py-1 px-5 focus:outline-none border-2  rounded-xl focus:ring ring-red-500 focus:border-red-500"
                                     placeholder="*******"></td>
                         </tr>
                         <tr>
                             <td colspan="2" class="p-2 text-center">
-                                <button type="submit" class="py-1 px-5 bg-red-500 text-white rounded-lg cursor-pointer">Login</button>
+                                <button type="submit"
+                                    class="py-1 px-5 bg-red-500 text-white rounded-lg cursor-pointer">Login</button>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <p class="text-center text-gray-500 text-[12px]">Belum punya akun? <a href=""
+                                <p class="text-center text-gray-500 text-[12px]">Belum punya akun? <a href="{{ route('register') }}"
                                         class="text-red-500">Daftar</a></p>
                             </td>
                         </tr>
