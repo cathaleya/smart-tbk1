@@ -44,7 +44,7 @@ class UserController extends Controller
         }
 
 
-        return redirect()->back()->with(['notification' => 'Email atau password tidak di temukan'])->withInput();
+        return redirect()->back()->with(['notification' => 'Email atau password salah'])->withInput();
     }
 
     public function logout(Request $request): RedirectResponse
