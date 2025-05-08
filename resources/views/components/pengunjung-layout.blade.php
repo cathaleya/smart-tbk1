@@ -11,14 +11,19 @@
 </head>
 
 <body>
+    @if (session('notification'))
+        <x-notification>{{ session('notification') }}</x-notification>
+    @endif
     <main>
         {{ $slot }}
     </main>
     <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/client-interface.js') }}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
+
 </body>
 
 </html>

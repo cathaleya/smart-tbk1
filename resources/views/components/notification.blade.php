@@ -1,0 +1,7 @@
+<div id="notification" class="w-full fixed  pt-5 flex justify-center items-center font-inter transition  duration-500 ease-in-out opacity-100 ">
+    <div class=" px-3 py-2  rounded-full shadow-2xl   bg-red-500  text-white  flex justify-center items-center gap-2 text-[12px] ">
+       <span class="flex justify-center items-center"> <svg xmlns="http://www.w3.org/2000/svg" class="w-[20px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bell-icon lucide-bell"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg></span>
+        <span class=" text-center">{{ $slot }}</span>
+        <span class="close-notification-button cursor-pointer  flex justify-center items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x-icon lucide-circle-x"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></span>
+    </div>
+</div>

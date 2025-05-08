@@ -1,6 +1,4 @@
-<x-admin-layout>
-  
-  <div class="rounded-xl shadow overflow-hidden border border-gray-200">
+<div class="rounded-xl shadow overflow-hidden border bg-white border-gray-200 ">
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50 text-gray-600 text-sm font-semibold">
             <tr>
@@ -24,7 +22,8 @@
                 <td class="px-6 py-4">08/05/2025 04:56</td>
                 <td class="px-6 py-4">—</td>
                 <td class="px-6 py-4">
-                    <span class="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 rounded-full text-gray-600">
+                    <span
+                        class="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 rounded-full text-gray-600">
                         <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
                         Loading
                     </span>
@@ -33,4 +32,3 @@
         </tbody>
     </table>
 </div>
-</x-admin-layout>

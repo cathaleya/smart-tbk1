@@ -44,7 +44,7 @@
                       </tr>
                       <tr>
                           <td colspan="2">
-                              <p class="text-center text-gray-500 text-[12px]">sudah punya akun? <a href="{{ route('login') }}"
+                              <p class="text-center text-gray-500 text-[12px]">sudah punya akun? <a href="{{ route('view-login') }}"
                                       class="text-red-500">Login</a></p>
                           </td>
                       </tr>

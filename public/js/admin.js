@@ -5,4 +5,11 @@ $(document).ready(function() {
   
   })
 
+  $('.show-modal-button').on('click', function() {
+    $('#modal').toggleClass('opacity-0 -translate-y-full');
+  })
+  $('.tombol-tutup-modal').on('click', function() {
+    $('#modal').toggleClass('opacity-0 -translate-y-full');
+  })
+
 })
