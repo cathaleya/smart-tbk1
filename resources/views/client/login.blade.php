@@ -31,12 +31,6 @@
                                     class="py-1 px-5 bg-red-500 text-white rounded-lg cursor-pointer">Login</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td colspan="2">
-                                <p class="text-center text-gray-500 text-[12px]">Belum punya akun? <a
-                                        href="{{ route('register') }}" class="text-red-500">Daftar</a></p>
-                            </td>
-                        </tr>
                     </table>
                 </form>
             </div>
