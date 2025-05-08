@@ -1,28 +1,28 @@
 <x-admin-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
-    <div class="flex gap-5 px-5 font-inter text-[13px]">
-        <div class="grow-2 bg-white shadow  text-gray-500 rounded-lg p-5">
+    <div class="flex lg:flex-row flex-col gap-5  font-inter text-[13px]">
+        <div class="lg:grow-2 order-2 lg:order-1 bg-white shadow  text-gray-500 rounded-lg p-5">
             <div class="mb-5">
                 <h1 class="text-[20px] font-bold text-black ">Data diri pengguna</h1>
                 <h2 class="text-gray-500">Lakukan perubahan pada form dibawah ini untuk mengubah data pengguna</h2>
             </div>
-            <div class="flex flex-wrap justify-between  gap-2">
-                <div class="w-[48%] mb-2">
+            <div class="flex lg:flex-row flex-col flex-wrap justify-between  gap-2">
+                <div class="lg:w-[48%] w-full mb-2">
                     <h1 class="mb-2  text-gray-600">Nama Pengguna</h1>
                     <input type="text" class="w-full py-2 px-3 border border-gray-600 rounded-2xl bg-gray text-gray"
                         value="{{ Auth::user()->name }}">
                 </div>
-                <div class="w-[48%]  mb-2">
+                <div class="lg:w-[48%] w-full  mb-2">
                     <h1 class="mb-2  text-gray-600">Email</h1>
                     <input type="text" class="w-full py-2 px-3 border border-gray-600 rounded-2xl bg-gray text-gray"
                         value="{{ Auth::user()->email }}">
                 </div>
-                <div class="w-[48%]  mb-2">
+                <div class="lg:w-[48%] w-full  mb-2">
                     <h1 class="mb-2  text-gray-600">No Hp</h1>
                     <input type="text" class="w-full py-2 px-3 border border-gray-600 rounded-2xl bg-gray text-gray"
                         value="087788221533">
                 </div>
-                <div class="w-[48%]  mb-2">
+                <div class="lg:w-[48%] w-full  mb-2">
                     <h1 class="mb-2  text-gray-600">Jenis Kelamin</h1>
                     <select type="text"
                         class="w-full appearance-none py-2 px-3 border border-gray-600 rounded-2xl bg-gray text-gray"
@@ -48,8 +48,8 @@
                 </div>
             </div>
         </div>
-        <div class="grow-2 bg-white rounded-lg p-5 shadow">
-            <div class="">
+        <div class="lg:grow-1 order-1 lg:order-2 bg-white rounded-lg p-5 shadow">
+            <div class="flex justify-center items-center">
                 <img src="{{ asset('img/profile/default.jpeg') }}" alt="" class="w-[200px]">
             </div>
             <div class="text-center mt-5">

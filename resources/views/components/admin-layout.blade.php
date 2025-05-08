@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="w-full h-screen flex font-inter  overflow-hidden">
+    <div class="w-full h-screen flex font-inter ">
         <x-sidebar></x-sidebar>
         <div class="w-full lg:w-[80%] bg-gray-100">
             <nav class="lg:hidden h-[80px] flex justify-end items-center px-5">
