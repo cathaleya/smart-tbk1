@@ -7,11 +7,10 @@
                 <h2 class="text-gray-500">Lakukan perubahan pada form dibawah ini untuk mengubah data pengguna</h2>
             </div>
             <div class="w-full">
-                <form action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data"
+                <form action="/update-profile" method="POST" enctype="multipart/form-data"
                     class="flex lg:flex-row flex-col flex-wrap justify-between  gap-2">
                     @csrf
-                    @method('PUT')
-
+                    <input type="hidden" value="{{ $user->id }}" name="id">
                     <div class="lg:w-[48%] w-full mb-2">
                         <h1 class="mb-2  text-gray-600">Nama Pengguna</h1>
                         <input type="text" name="name"
@@ -40,7 +39,7 @@
                     <div class="lg:w-[48%] w-full  mb-2">
                         <h1 class="mb-2  text-gray-600">Jenis Kelamin</h1>
                         <select type="text" name="gender"
-                            class="js-example-basic-single w-full appearance-none py-2 px-3 border b bg-red-500  text-white"
+                            class="w-full appearance-none py-2 px-3 border b bg-red-500  text-white"
                             value="{{ $user->gender }}">
                             <option value="L" {{ $user->gender == 'L' ? 'selected' : '' }}>Laki-laki
                             </option>
@@ -51,28 +50,10 @@
                             <div class="text-red-500 text-[12px] mt-1">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="lg:w-[48%] w-full  mb-2">
-                        <h1 class="mb-2  text-gray-600">Jabatan</h1>
-                        <select type="text" name="role_id"
-                            class="js-example-basic-single w-full appearance-none py-2 px-3 border b bg-red-500  text-white">
-                            @if ($roles->count() > 0)
-                                @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}"
-                                        {{ $user->role->id == $role->id ? 'selected' : '' }}>
-                                        {{ $role->name }}</option>
-                                @endforeach
 
-                            @endif
-
-                        </select>
-                        @error('role_id')
-                            <div class="text-red-500 text-[12px] mt-1">{{ $message }}</div>
-                        @enderror
-                    </div>
                     <div class="lg:w-[48%] w-full  mb-2">
                         <h1 class="mb-2  text-gray-600">Foto Profil</h1>
-                        <input type="file" name="picture" class="w-full py-2 px-3 border bg-red-500 text-white"
-                           >
+                        <input type="file" name="picture" class="w-full py-2 px-3 border bg-red-500 text-white">
                         @error('picture')
                             <div class="text-red-500 text-[12px] mt-1">{{ $message }}</div>
                         @enderror
@@ -98,7 +79,8 @@
         </div>
         <div class="lg:grow-1 order-1 lg:order-2 bg-white rounded-lg p-5 shadow">
             <div class="flex justify-center items-center   overflow-hidden">
-                <img src="{{ asset($user->picture) }}" alt="" class="w-[200px] h-[200px] rounded-full object-cover ">
+                <img src="{{ asset($user->picture) }}" alt=""
+                    class="w-[200px] h-[200px] rounded-full object-cover ">
             </div>
             <div class="text-center mt-5">
                 <h1 class="text-[20px] font-bold">{{ $user->name }}</h1>

@@ -18,7 +18,7 @@
                     <span>Dashboard</span>
                 </span>
             </a>
-            @can('isAdmin')
+            @can('mengontrolPengguna')
                 <a href="{{ route('user.index') }}"
                     class="{{ Request::is('user') ? 'bg-red-500 text-white ' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5 justify-start pl-2 rounded-lg    ">
                     <span class="flex gap-2 items-center ">
@@ -33,52 +33,73 @@
                     </span>
                 </a>
             @endcan
-            <a href="{{ route('delivery-order') }}"
-                class="{{ Request::is('delivery-order*') ? 'bg-red-500 text-white' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5 justify-start pl-2 rounded-lg  ">
+            @can('deliveryOrder')
+                <a href="{{ route('delivery-order') }}"
+                    class="{{ Request::is('delivery-order*') ? 'bg-red-500 text-white' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5 justify-start pl-2 rounded-lg  ">
+                    <span class="flex gap-2 items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="lucide lucide-file-spreadsheet-icon lucide-file-spreadsheet">
+                            <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+                            <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                            <path d="M8 13h2" />
+                            <path d="M14 13h2" />
+                            <path d="M8 17h2" />
+                            <path d="M14 17h2" />
+                        </svg>
+                        <span>Delivery Order</span>
+                    </span>
+                </a>
+            @endcan
+            @can('warehouse')
+                <a href="{{ route('warehouse') }}"
+                    class="{{ Request::is('warehouse*') ? 'bg-red-500 text-white' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5 justify-start pl-2 rounded-lg  ">
+                    <span class="flex gap-2 items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="lucide lucide-warehouse-icon lucide-warehouse">
+                            <path
+                                d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z" />
+                            <path d="M6 18h12" />
+                            <path d="M6 14h12" />
+                            <rect width="12" height="12" x="6" y="10" />
+                        </svg>
+                        <span>Warehouse</span>
+                    </span>
+                </a>
+            @endcan
+            @can('transport')
+                <a href="{{ route('transport') }}"
+                    class="{{ Request::is('transport*') ? 'bg-red-500 text-white' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5  justify-start pl-2 rounded-lg  ">
+                    <span class="flex gap-2 items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="lucide lucide-truck-icon lucide-truck">
+                            <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+                            <path d="M15 18H9" />
+                            <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
+                            <circle cx="17" cy="18" r="2" />
+                            <circle cx="7" cy="18" r="2" />
+                        </svg>
+                        <span>Transport</span>
+                    </span>
+                </a>
+            @endcan
+            <a href="/lainnya"
+                class="{{ Request::is('lainnya*') ? 'bg-red-500 text-white' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5  justify-start pl-2 rounded-lg  ">
                 <span class="flex gap-2 items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="lucide lucide-file-spreadsheet-icon lucide-file-spreadsheet">
-                        <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
-                        <path d="M14 2v4a2 2 0 0 0 2 2h4" />
-                        <path d="M8 13h2" />
-                        <path d="M14 13h2" />
-                        <path d="M8 17h2" />
-                        <path d="M14 17h2" />
+                        stroke-linejoin="round"
+                        class="lucide lucide-gallery-vertical-end-icon lucide-gallery-vertical-end">
+                        <path d="M7 2h10" />
+                        <path d="M5 6h14" />
+                        <rect width="18" height="12" x="3" y="10" rx="2" />
                     </svg>
-                    <span>Delivery Order</span>
+                    <span>Lainnya</span>
                 </span>
             </a>
-            <a href="{{ route('warehouse') }}"
-                class="{{ Request::is('warehouse*') ? 'bg-red-500 text-white' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5 justify-start pl-2 rounded-lg  ">
-                <span class="flex gap-2 items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="lucide lucide-warehouse-icon lucide-warehouse">
-                        <path
-                            d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z" />
-                        <path d="M6 18h12" />
-                        <path d="M6 14h12" />
-                        <rect width="12" height="12" x="6" y="10" />
-                    </svg>
-                    <span>Warehouse</span>
-                </span>
-            </a>
-            <a href="{{ route('transport') }}"
-                class="{{ Request::is('transport*') ? 'bg-red-500 text-white' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5  justify-start pl-2 rounded-lg  ">
-                <span class="flex gap-2 items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="lucide lucide-truck-icon lucide-truck">
-                        <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
-                        <path d="M15 18H9" />
-                        <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
-                        <circle cx="17" cy="18" r="2" />
-                        <circle cx="7" cy="18" r="2" />
-                    </svg>
-                    <span>Transport</span>
-                </span>
-            </a>
+
         </div>
         <div class="w-full h-[40%] border-t-2 border-gray-200 p-5 flex flex-col gap-2">
             <div class="w-full flex py-2 gap-2 ">
@@ -94,8 +115,8 @@
                 </div>
             </div>
             <div class="w-full text-[10px] lg:text-[15px]">
-                <a href="{{ route('user.edit', Auth::user()->id) }}"
-                    class="{{ Request::is('user/*/edit') ? 'bg-red-500 text-white' : 'text-gray-500 hover:bg-gray-100' }}  flex py-3 px-5 justify-start pl-2 rounded-lg   ">
+                <a href="/update-profile/{{ Auth::user()->id }}"
+                    class="{{ Request::is('update-profile/*') ? 'bg-red-500 text-white' : 'text-gray-500 hover:bg-gray-100' }}  flex py-3 px-5 justify-start pl-2 rounded-lg   ">
                     <span class="flex gap-2 items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"

@@ -6,24 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title }}</title>
+    {{-- aos --}}
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    {{-- select 2 --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
-    <div class="w-full h-screen flex font-inter ">
+    @if (session('notification'))
+        <x-notification>{{ session('notification') }}</x-notification>
+    @endif
+    <div class="w-full h-screen flex font-inter overflow-x-hidden">
         <x-sidebar></x-sidebar>
         <div class="w-full lg:w-[80%] bg-gray-100">
             <nav class="lg:hidden h-[80px] flex justify-end items-center px-5">
                 <span id="sidebar-toggle" class="text-red-500 hover:cursor-pointer">
-                    <svg id="" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu"><path d="M4 12h16"/><path d="M4 18h16"/><path d="M4 6h16"/></svg>
+                    <svg id="" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu">
+                        <path d="M4 12h16" />
+                        <path d="M4 18h16" />
+                        <path d="M4 6h16" />
+                    </svg>
                 </span>
-                
+
             </nav>
             <main class="p-2 lg:p-5 ">
                 {{ $slot }}
             </main>
             <footer class=" p-5 text-[13px]">
-                <div class="w-full bg-white shadow mb-5 p-5 rounded-full">
+                <div class="w-full bg-red-500 text-white shadow mb-5 p-5 rounded-full">
                     <span class="flex gap-1 justify-center items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -41,6 +55,11 @@
     </div>
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/admin.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>

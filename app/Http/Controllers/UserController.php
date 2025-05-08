@@ -95,7 +95,7 @@ class UserController extends Controller
 
         if ($request->hasFile('picture')) {
             $path = 'img/profile/';
-            $filename = $validated['user'] . '-' . time() . '.' . $request->file('picture')->getClientOriginalExtension();
+            $filename = $validated['name'] . '-' . time() . '.' . $request->file('picture')->getClientOriginalExtension();
             $request->file('picture')->move(public_path($path), $filename);
             $validatedData['picture'] = $path . $filename;
         }
@@ -133,7 +133,11 @@ class UserController extends Controller
             'gender' => $validated['gender'],
             'role_id' => $validated['role_id'],
         ];
- 
+
+        if (!$user) {
+            return redirect()->back()->with('notification', 'Pengguna tidak ditemukan');
+        }
+
 
         if ($request->hasFile('picture')) {
             $filePath = public_path($user->picture);
@@ -152,8 +156,81 @@ class UserController extends Controller
         return redirect()->route('user.index')->with('notification', 'Pengguna berhasil diperbarui');
     }
 
-    public function destroy(User $user)
+    public function updateProfileView(User $user)
     {
+
+        if (Auth::user()->id != $user->id) {
+            return abort(403, 'Anda tidak memiliki akses ke halaman ini.');
+        }
+        return view('admin.update-profile', [
+            'user' => $user,
+            'title' => 'Profile ' . $user->name,
+        ]);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $validated =  $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'gender' => 'required',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $user = User::where('id', $request->id)->first();
+        if (!$user) {
+            return redirect()->back()->with('notification', 'Pengguna tidak ditemukan');
+        }
+
+        if (Auth::user()->id != $user->id) {
+            return abort(403, 'Anda tidak memiliki akses ke halaman ini.');
+        }
+
+        $validatedData = [
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'],
+            'gender' => $validated['gender'],
+        ];
+
+
+        if ($request->hasFile('picture')) {
+            $filePath = public_path($user->picture);
+
+            if ($user->picture != 'img/profile/default.jpeg' && file_exists($filePath)) {
+                unlink($filePath);
+            }
+            $path = 'img/profile/';
+            $filename = $user->name . '-' . time() . '.' . $request->file('picture')->getClientOriginalExtension();
+            $request->file('picture')->move(public_path($path), $filename);
+            $validatedData['picture'] = $path . $filename;
+        }
+
+
+        $user->update($validatedData);
+        return redirect()->back()->with('notification', 'Pengguna berhasil diperbarui');
+    }
+
+
+    public function destroy(int $id)
+    {
+        $user = User::find($id);
+        if (!$user) {
+            return redirect()->back()->with('notification', 'Pengguna tidak ditemukan');
+        }
+
+        if ($user->picture != 'img/profile/default.jpeg') {
+            $filePath = public_path($user->picture);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+        }
+        if ($user->id == Auth::user()->id) {
+            return redirect()->back()->with('notification', 'Anda tidak dapat menghapus akun Anda sendiri');
+        }
+
+
         $user->delete();
         return redirect()->route('user.index')->with('notification', 'Pengguna berhasil dihapus');
     }
