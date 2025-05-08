@@ -1,4 +1,3 @@
-
 <aside class="lg:w-[20%]   shadow-2xl font-bold text-gray-500 overflow-hidden">
     <aside id="sidebar"
         class="fixed lg:w-[20%] transition ease-out duration-700 translate-x-[-100%] lg:translate-x-0 w-[50%] h-full bg-white shadow-2xl  overflow-hidden">
@@ -19,13 +18,21 @@
                     <span>Dashboard</span>
                 </span>
             </a>
-            <a href="{{ route('user.index') }}"
-                class="{{ Request::is('user') ? 'bg-red-500 text-white ' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5 justify-start pl-2 rounded-lg    ">
-                <span class="flex gap-2 items-center ">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-round-icon lucide-users-round"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg>
-                    <span>Semua Pengguna</span>
-                </span>
-            </a>
+            @can('isAdmin')
+                <a href="{{ route('user.index') }}"
+                    class="{{ Request::is('user') ? 'bg-red-500 text-white ' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5 justify-start pl-2 rounded-lg    ">
+                    <span class="flex gap-2 items-center ">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="lucide lucide-users-round-icon lucide-users-round">
+                            <path d="M18 21a8 8 0 0 0-16 0" />
+                            <circle cx="10" cy="8" r="5" />
+                            <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" />
+                        </svg>
+                        <span>Semua Pengguna</span>
+                    </span>
+                </a>
+            @endcan
             <a href="{{ route('delivery-order') }}"
                 class="{{ Request::is('delivery-order*') ? 'bg-red-500 text-white' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5 justify-start pl-2 rounded-lg  ">
                 <span class="flex gap-2 items-center">
@@ -76,11 +83,14 @@
         <div class="w-full h-[40%] border-t-2 border-gray-200 p-5 flex flex-col gap-2">
             <div class="w-full flex py-2 gap-2 ">
                 <div class="">
-                    <img src="{{ asset(Auth::user()->picture) }}" alt="" class="w-[80px] h-[80px] object-cover rounded-xl">
+                    <img src="{{ asset(Auth::user()->picture) }}" alt=""
+                        class="w-[80px] h-[80px] object-cover rounded-xl">
                 </div>
                 <div class="flex flex-col justify-center ">
-                    <h1 class="text-[15px] pl-2">{{ Str::limit(Auth::user()->name , 15, '...') }}</h1>
-                    <span class="text-red-500 text-[10px] py-1 px-3 text-center rounded-full border">{{Auth::user()->role->name  }} </span>
+                    <h1 class="text-[15px] pl-2">{{ Str::limit(Auth::user()->name, 15, '...') }}</h1>
+                    <span
+                        class="text-red-500 text-[10px] py-1 px-3 text-center rounded-full border">{{ Auth::user()->role->name }}
+                    </span>
                 </div>
             </div>
             <div class="w-full text-[10px] lg:text-[15px]">
@@ -102,9 +112,10 @@
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
                         <span class="flex gap-2 items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-log-out-icon lucide-log-out">
                                 <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                                 <polyline points="16 17 21 12 16 7" />
                                 <line x1="21" x2="9" y1="12" y2="12" />

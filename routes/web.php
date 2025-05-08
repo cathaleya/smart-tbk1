@@ -9,26 +9,29 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/', function () {
         return view('client.login');
     })->name('view-login');
-    
-    Route::post('/login',[UserController::class, 'login'])->name('login');
 
+    Route::post('/login', [UserController::class, 'login'])->name('login');
 });
 
 
-Route::middleware(['auth'])->group(function () {
+
+Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('user', UserController::class);
-    Route::post('/logout',[UserController::class, 'logout'])->name('logout');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 
-    
+
     Route::get('/dashboard', function () {
-        return view('admin.dashboard',[
+        return view('admin.dashboard', [
             'title' => 'Dashboard',
         ]);
     })->name('dashboard');
 
     Route::get('/delivery-order', function () {
-        return view('sales.delivery-order',[
+        return view('sales.delivery-order', [
             'title' => 'Delivery Order',
         ]);
     })->name('delivery-order');
