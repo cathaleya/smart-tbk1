@@ -76,7 +76,7 @@
         <div class="w-full h-[40%] border-t-2 border-gray-200 p-5 flex flex-col gap-2">
             <div class="w-full flex py-2 gap-2 ">
                 <div class="">
-                    <img src="{{ asset(Auth::user()->picture) }}" alt="" class="w-[80px] h-[80px] rounded-xl">
+                    <img src="{{ asset(Auth::user()->picture) }}" alt="" class="w-[80px] h-[80px] object-cover rounded-xl">
                 </div>
                 <div class="flex flex-col justify-center ">
                     <h1 class="text-[15px] pl-2">{{ Str::limit(Auth::user()->name , 15, '...') }}</h1>
