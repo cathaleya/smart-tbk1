@@ -5,7 +5,7 @@
         <div class="flex h-[10%]  justify-start items-center pl-5">
             <img src="{{ asset('img/logo/smart-logo.svg') }}" alt="" class="w-[150px] bg-white rounded-lg">
         </div>
-        <div class=" flex h-[50%] flex-col gap-2 px-5  my-5 overflow-y-scroll text-[10px] lg:text-[15px]">
+        <div class=" flex h-[50%] flex-col gap-2 px-5  my-5 overflow-y-scroll text-[10px] lg:text-[13px]">
             <a href="{{ route('dashboard') }}"
                 class="{{ Request::is('dashboard*') ? 'bg-red-500 text-white ' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5 justify-start pl-2 rounded-lg    ">
                 <span class="flex gap-2 items-center ">
@@ -74,13 +74,13 @@
             </a>
         </div>
         <div class="w-full h-[40%] border-t-2 border-gray-200 p-5 flex flex-col gap-2">
-            <div class="w-full flex py-2 ">
+            <div class="w-full flex py-2 gap-2 ">
                 <div class="">
-                    <img src="{{ asset('img/profile/default.jpeg') }}" alt="" class="w-[50px]">
+                    <img src="{{ asset(Auth::user()->picture) }}" alt="" class="w-[80px] h-[80px] rounded-xl">
                 </div>
-                <div class="flex flex-col justify-center ml-3">
-                    <h1 class="text-[20px] pl-2">{{ Auth::user()->name }}</h1>
-                    <span class="text-red-500 text-[10px] py-1 px-3 rounded-full border">Developer </span>
+                <div class="flex flex-col justify-center ">
+                    <h1 class="text-[15px] pl-2">{{ Str::limit(Auth::user()->name , 15, '...') }}</h1>
+                    <span class="text-red-500 text-[10px] py-1 px-3 text-center rounded-full border">{{Auth::user()->role->name  }} </span>
                 </div>
             </div>
             <div class="w-full text-[10px] lg:text-[15px]">
@@ -98,7 +98,7 @@
                         <span>Profile</span>
                     </span>
                 </a>
-                <span class="flex py-3 px-5 justify-start pl-2 rounded-lg hover:bg-gray-100  cursor-pointer">
+                <span class="flex py-3 px-5 justify-start pl-2 rounded-lg cursor-pointer hover:bg-gray-100 ">
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
                         <span class="flex gap-2 items-center">
@@ -109,7 +109,7 @@
                                 <polyline points="16 17 21 12 16 7" />
                                 <line x1="21" x2="9" y1="12" y2="12" />
                             </svg>
-                            <button type="submit" class="">Logout</button>
+                            <button type="submit" class="cursor-pointer">Logout</button>
                         </span>
                     </form>
                 </span>

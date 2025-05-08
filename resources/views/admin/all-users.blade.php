@@ -2,7 +2,7 @@
     <x-slot:title>{{ $title }}</x-slot:title>
 
     <x-navbar>
-        <x-slot:createLink></x-slot:createLink>
+        <x-slot:createLink>{{ route('user.create') }}</x-slot:createLink>
         <x-slot:printLink></x-slot:printLink>
     </x-navbar>
     <div class="">
@@ -25,17 +25,17 @@
                                 <td class="px-6 py-4 font-bold text-gray-700">{{ ++$index }}</td>
                                 <td class="px-6 py-4 ">{{ $user->name }}</td>
                                 <td class="px-6 py-4 ">{{ $user->email }}</td>
-                                <td class="px-6 py-4 ">Laki-Laki</td>
-                                <td class="px-6 py-4 ">Developer</td>
+                                <td class="px-6 py-4 ">{{ $user->gender == 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
+                                <td class="px-6 py-4 ">{{ $user->role->name }}</td>
                                 <td class="px-6 py-4 ">
                                     <div class="flex gap-2 items-center justify-start">
                                         <a href="{{ route('user.edit', $user->id) }}"
                                             class="bg-blue-500 hover:bg-blue-700 cursor-pointer text-white font-bold py-1 px-4 inline-block rounded">Edit</a>
-                                        <form action="{{ route('user.destroy', $user->id) }}" method="POST"
+                                        <form action="{{ route('user.destroy', $user->id) }}"  method="POST"
                                             class="inline-block">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit"
+                                            <button type="submit" onclick="return confirm('Kamu yakin akan menghapus pengguna ini?')"
                                                 class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded cursor-pointer">Delete</button>
                                         </form>
                                     </div>
