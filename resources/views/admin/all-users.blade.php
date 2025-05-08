@@ -7,7 +7,7 @@
     </x-navbar>
     <div class="">
         @if (count($users) > 0)
-            <div class="rounded-xl shadow overflow-hidden border bg-white border-gray-200 ">
+            <div class="rounded-xl shadow overflow-auto border bg-white border-gray-200 ">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50 text-gray-600 text-sm font-semibold">
                         <tr>
@@ -28,7 +28,7 @@
                                 <td class="px-6 py-4 ">Laki-Laki</td>
                                 <td class="px-6 py-4 ">Developer</td>
                                 <td class="px-6 py-4 ">
-                                    <div class="">
+                                    <div class="flex gap-2 items-center justify-start">
                                         <a href="{{ route('user.edit', $user->id) }}"
                                             class="bg-blue-500 hover:bg-blue-700 cursor-pointer text-white font-bold py-1 px-4 inline-block rounded">Edit</a>
                                         <form action="{{ route('user.destroy', $user->id) }}" method="POST"
