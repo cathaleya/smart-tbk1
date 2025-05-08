@@ -97,8 +97,8 @@
             </div>
         </div>
         <div class="lg:grow-1 order-1 lg:order-2 bg-white rounded-lg p-5 shadow">
-            <div class="flex justify-center items-center w-[200px] overflow-hidden">
-                <img src="{{ asset($user->picture) }}" alt="" class="w-full">
+            <div class="flex justify-center items-center   overflow-hidden">
+                <img src="{{ asset($user->picture) }}" alt="" class="w-[200px] h-[200px] rounded-full object-cover ">
             </div>
             <div class="text-center mt-5">
                 <h1 class="text-[20px] font-bold">{{ $user->name }}</h1>
