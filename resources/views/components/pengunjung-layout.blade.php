@@ -8,14 +8,14 @@
     <title>Document</title>
     {{-- aos --}}
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite('resources/css/app.css')
 </head>
 
 <body>
     @if (session('notification'))
         <x-notification>{{ session('notification') }}</x-notification>
     @endif
-    <main class="overflow-x-hidden">
+    <main class="overflow-x-hidden ">
         {{ $slot }}
     </main>
     <script src="{{ asset('js/jquery.js') }}"></script>

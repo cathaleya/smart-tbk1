@@ -24,4 +24,81 @@ $(document).ready(function () {
     $('#modal').toggleClass('opacity-0 -translate-y-full');
   })
 
+  // select negara on create
+  $('#select-negara').on('change', function () {
+    LoadingScreen()
+    let kode = $(this).val()
+
+    $.ajax({
+      url: `https://secure.geonames.org/searchJSON?country=${kode}&featureClass=P&maxRows=1000&username=humamafif`,
+      type: 'GET',
+      success: function (response) {
+
+        $('#select-kota').html('')
+        let data = response.geonames
+        let newOption = ``;
+        data.forEach(e => {
+          let nama = e.name
+          newOption += `
+           <option value="${nama}">
+                                        ${nama}</option>
+          `
+        });
+        $('#select-kota').append(newOption)
+        LoadingScreen()
+      },
+      error: function (xhr, status, error) {
+        if (xhr.status == 419) {
+          alert('Sesi Anda telah habis. Silakan login kembali.');
+        } else {
+          alert('Terjadi kesalahan. Silakan coba lagi.');
+        }
+      }
+    });
+  })
+
+  // select negara on edit
+  $('#select-negara-edit').on('change', function () {
+    LoadingScreen()
+    let kode = $(this).val()
+
+    $.ajax({
+      url: `https://secure.geonames.org/searchJSON?country=${kode}&featureClass=P&maxRows=1000&username=humamafif`,
+      type: 'GET',
+      success: function (response) {
+
+        $('#select-kota-edit').html('')
+        let data = response.geonames
+        let newOption = ``;
+        data.forEach(e => {
+          let nama = e.name
+          newOption += `
+           <option value="${nama}">
+                                        ${nama}</option>
+          `
+        });
+        $('#select-kota-edit').append(newOption)
+        LoadingScreen()
+      },
+      error: function (xhr, status, error) {
+        if (xhr.status == 419) {
+          alert('Sesi Anda telah habis. Silakan login kembali.');
+        } else {
+          alert('Terjadi kesalahan. Silakan coba lagi.');
+        }
+      }
+    });
+  })
+
 })
+
+
+
+$('form').on('submit', function () {
+  LoadingScreen()
+})
+
+function LoadingScreen() {
+  $('#loading-screen').toggleClass('hidden flex')
+  $('#loading-screen').toggleClass('backdrop-blur-sm')
+}

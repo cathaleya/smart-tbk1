@@ -34,8 +34,8 @@
                 </a>
             @endcan
             @can('deliveryOrder')
-                <a href="{{ route('delivery-order') }}"
-                    class="{{ Request::is('delivery-order*') ? 'bg-red-500 text-white' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5 justify-start pl-2 rounded-lg  ">
+                <a href="/transaction"
+                    class="{{ Request::is('transaction*') ? 'bg-red-500 text-white' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5 justify-start pl-2 rounded-lg  ">
                     <span class="flex gap-2 items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -47,7 +47,24 @@
                             <path d="M8 17h2" />
                             <path d="M14 17h2" />
                         </svg>
-                        <span>Delivery Order</span>
+                        <span>Transaction</span>
+                    </span>
+                </a>
+            @endcan
+            @can('transport')
+                <a href="/transport"
+                    class="{{ Request::is('transport*') ? 'bg-red-500 text-white' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5  justify-start pl-2 rounded-lg  ">
+                    <span class="flex gap-2 items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="lucide lucide-truck-icon lucide-truck">
+                            <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
+                            <path d="M15 18H9" />
+                            <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
+                            <circle cx="17" cy="18" r="2" />
+                            <circle cx="7" cy="18" r="2" />
+                        </svg>
+                        <span>Transport</span>
                     </span>
                 </a>
             @endcan
@@ -68,23 +85,7 @@
                     </span>
                 </a>
             @endcan
-            @can('transport')
-                <a href="{{ route('transport') }}"
-                    class="{{ Request::is('transport*') ? 'bg-red-500 text-white' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5  justify-start pl-2 rounded-lg  ">
-                    <span class="flex gap-2 items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="lucide lucide-truck-icon lucide-truck">
-                            <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
-                            <path d="M15 18H9" />
-                            <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
-                            <circle cx="17" cy="18" r="2" />
-                            <circle cx="7" cy="18" r="2" />
-                        </svg>
-                        <span>Transport</span>
-                    </span>
-                </a>
-            @endcan
+
             <a href="/lainnya"
                 class="{{ Request::is('lainnya*') ? 'bg-red-500 text-white' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5  justify-start pl-2 rounded-lg  ">
                 <span class="flex gap-2 items-center">

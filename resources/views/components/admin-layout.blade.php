@@ -11,13 +11,16 @@
 
     {{-- select 2 --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    @vite('resources/css/app.css')
+
 </head>
 
 <body>
     @if (session('notification'))
         <x-notification>{{ session('notification') }}</x-notification>
     @endif
+    <x-loading-screen></x-loading-screen>
     <div class="w-full h-screen flex font-inter overflow-x-hidden">
         <x-sidebar></x-sidebar>
         <div class="w-full lg:w-[80%] bg-gray-100">
@@ -33,7 +36,7 @@
                 </span>
 
             </nav>
-            <main class="p-2 lg:p-5 ">
+            <main class="p-2 lg:p-5 relative ">
                 {{ $slot }}
             </main>
             <footer class=" p-5 text-[13px]">
