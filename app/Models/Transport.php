@@ -11,4 +11,16 @@ class Transport extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function transaction()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function transporter()
+    {
+        return $this->belongsTo(Transporter::class);
+    }
+
+
 }

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('tanggal');
             $table->timestamp('rdd');
             $table->bigInteger('no_do');
+            $table->bigInteger('no_so');
+            $table->bigInteger('no_po');
             $table->bigInteger('ref_doc');
             $table->string('pelanggan');
             $table->string('vessel_name');
@@ -23,6 +25,7 @@ return new class extends Migration
             $table->bigInteger('qty');
             $table->foreignId('su')->constrained('item_units')->cascadeOnDelete();
             $table->foreignId('sloc')->constrained('slocs')->cascadeOnDelete();
+            $table->foreignId('transport_id')->nullable()->constrained('transports');
 
 
             $table->string('kode_negara');

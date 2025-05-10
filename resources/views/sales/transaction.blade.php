@@ -1,6 +1,6 @@
 <x-admin-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
-    
+
     <x-navbar>
         <x-slot:createLink>/transaction/tambah-data</x-slot:createLink>
         <x-slot:printLink></x-slot:printLink>
@@ -25,16 +25,26 @@
                         <th class="px-6 py-3 text-left">Action</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-100 text-sm">
+                <tbody class="divide-y divide-gray-100 text-[12px]">
                     @if (count($transactiondata) > 0)
                         @foreach ($transactiondata as $td)
                             <tr class="bg-white">
                                 <td class="px-6 py-4 font-bold text-gray-700">{{ $td->no_do }}</td>
-                                <td class="px-6 py-4"> <span
-                                        class="inline-flex items-center gap-1 px-3 py-1  bg-gray-100 rounded-full text-gray-600">
-                                        <span class="w-2 h-2    bg-green-400 rounded-full"></span>
-                                        Done
-                                    </span></td>
+                                <td class="px-6 py-4">
+                                    @if ($td->transport_id == null)
+                                        <span
+                                            class="inline-flex items-center gap-1 px-3 py-1  bg-gray-100 rounded-full text-gray-600">
+                                            <span class="w-2 h-2    bg-red-400 rounded-full"></span>
+                                            Pending
+                                        </span>
+                                    @else
+                                        <span
+                                            class="inline-flex items-center gap-1 px-3 py-1  bg-gray-100 rounded-full text-gray-600">
+                                            <span class="w-2 h-2    bg-green-400 rounded-full"></span>
+                                            Done
+                                        </span>
+                                    @endif
+                                </td>
                                 <td class="px-6 py-4">
                                     <span
                                         class="inline-flex items-center gap-1 px-3 py-1  bg-gray-100 rounded-full text-gray-600">

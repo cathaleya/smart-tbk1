@@ -2,9 +2,16 @@
 
 namespace App\Http\Controllers;
 
-
+use Carbon\Carbon;
+use App\Models\Incot;
 use App\Models\Transport;
+use App\Models\Transaction;
+use App\Models\Transporter;
+use App\Models\VehicleType;
 use Illuminate\Http\Request;
+use App\Models\JenisSuratJalan;
+use Exception;
+use Illuminate\Support\Facades\Log;
 
 class TransportController extends Controller
 {
@@ -13,25 +20,223 @@ class TransportController extends Controller
     public function index(Request $request)
     {
 
-        $query = Transport::query();
-        $keyword = $request->keyword;
-        if($request->keyword)
-        {
-            $query->whereHas('transaction',function($query) use ($keyword){
-                $query->where('no_do','LIKE','%'.$keyword.'%');
-            });
+        $query = Transaction::query();
+
+        if ($request->keyword) {
+            $query->where('no_do', 'LIKE', '%' . $request->keyword . '%');
         }
 
-        $transport =  $query->get();
-        return view('transport.all-transport', [
+        $transactions =  $query->where('transport_id', null)->get();
+        return view('transport.all-transaction-pending', [
             'title' => 'Seluruh Transport',
-            'transport' => $transport
+            'transactions' => $transactions
         ]);
     }
     public function addTransportView()
     {
-        return view('transport.all-transport', [
-            'title' => 'Seluruh Transport'
+
+        $do = Transaction::whereDoesntHave('transport')->get();
+        $transporter = Transporter::all();
+        $typesj = JenisSuratJalan::all();
+        $typekend = VehicleType::all();
+        $incot = Incot::all();
+        return view('transport.add-transport', [
+            'title' => 'Tambah Transport',
+            'dooptions' => $do,
+            'transporters' => $transporter,
+            'typesjs' => $typesj,
+            'typekends' => $typekend,
+            'incots' => $incot
         ]);
+    }
+
+    public function addTransport(Request $request)
+    {
+        $request->validate([
+            'tanggal' => 'required',
+            'jam_kedatangan' => 'required',
+            'do_id' => 'required|array',
+            'do_id.*' => 'required|distinct|exists:transactions,id',
+            'transporter_id' => "required",
+            'type_sj' => "required",
+            'type_kend' => "required",
+            'incot' => "required",
+            'no_container' => "required",
+            'no_sheal' => "required",
+            'vehicle_no' => "required",
+        ]);
+
+        $transactions = $request->do_id;
+        $validated = [
+            'tanggal' => Carbon::parse($request->tanggal)->locale('id')->isoFormat('LL'),
+            'jam_kedatangan' => $request->jam_kedatangan,
+            'transporter_id' => $request->transporter_id,
+            'vehicle_no' => $request->vehicle_no,
+            'type_sj' => $request->type_sj,
+            'type_kend' => $request->type_kend,
+            'incot' => $request->incot,
+            'no_container' => $request->no_container,
+            'sheal' => $request->no_sheal,
+            'created_at' => $request->tanggal
+
+        ];
+
+        $transport = Transport::create($validated);
+
+        try {
+            foreach ($transactions as $tr) {
+                $transaction = Transaction::findOrFail($tr);
+                $transaction->update([
+                    'transport_id' => $transport->id,
+                ]);
+            }
+        } catch (\Exception $e) {
+            // Tangani error, misal log atau kembalikan pesan error
+            Log::error('Gagal mengupdate transaction: ' . $e->getMessage());
+            return back()->with('error', 'Terjadi kesalahan saat menyimpan data transportasi.');
+        }
+        return redirect('/transport/data')->with('notification', 'Berhasil menambah data transport');
+    }
+
+    public function allTransport(Request $request)
+    {
+
+        $query = Transport::with('transaction');
+        if ($request->keyword) {
+            $keyword = $request->keyword;
+            $query->whereHas('transaction', function ($query) use ($keyword) {
+                $query->where('no_do', 'LIKE', '%' . $keyword . '%');
+            });
+        }
+        $transports = $query->get();
+        return view('transport.all-transports  ', [
+            'title' => 'Seluruh Transport',
+            'transports' => $transports
+        ]);
+    }
+
+    public function viewEditTransport(int $id)
+    {
+        $transport = Transport::with(['transaction'])->where('id', $id)->first();
+        if ($transport == null) {
+            return redirect('/transport/data')->with('notification', 'Data tidak ditemukan');
+        }
+
+        $selectedId = $transport->transaction->pluck('id')->toArray();
+
+
+        $do = Transaction::where(function ($query) use ($transport) {
+            $query->whereNull('transport_id')
+                ->orWhere('transport_id', $transport->id);
+        })->get();
+        $transporter = Transporter::all();
+        $typesj = JenisSuratJalan::all();
+        $typekend = VehicleType::all();
+        $incot = Incot::all();
+        return view('transport.edit-transport', [
+            'title' => 'Tambah Transport',
+            'dooptions' => $do,
+            'transporters' => $transporter,
+            'typesjs' => $typesj,
+            'typekends' => $typekend,
+            'incots' => $incot,
+            'selectedId' => $selectedId,
+            'transport' => $transport
+        ]);
+    }
+
+    public function EditTransport(Request $request)
+    {
+
+
+        $request->validate([
+            'id' => 'required',
+            'tanggal' => 'required',
+            'jam_kedatangan' => 'required',
+            'do_id' => 'required|array',
+            'do_id.*' => 'required|distinct|exists:transactions,id',
+            'transporter_id' => "required",
+            'type_sj' => "required",
+            'type_kend' => "required",
+            'incot' => "required",
+            'no_container' => "required",
+            'no_sheal' => "required",
+            'vehicle_no' => "required",
+        ]);
+
+        $transport = Transport::where('id', $request->id)->first();
+
+        if ($transport == null) {
+            return redirect('/transport/data')->with('data tidak ditemukan');
+        }
+
+        try {
+            $transaksiSebelumnya = $transport->transaction->pluck('id');
+            if ($transaksiSebelumnya !== null) {
+                foreach ($transaksiSebelumnya as $id) {
+                    $transaksilama = Transaction::where('id', $id)->first();
+                    $transaksilama->update([
+                        'transport_id' => null
+                    ]);
+                }
+            }
+
+            $doBaru = $request->do_id;
+
+            foreach ($doBaru as $id) {
+                $transaksibaru = Transaction::where('id', $id)->first();
+                $transaksibaru->update([
+                    'transport_id' => $transport->id
+                ]);
+            }
+        } catch (Exception $e) {
+            // Tangani error, misal log atau kembalikan pesan error
+            Log::error('Gagal mengupdate transaction: ' . $e->getMessage());
+            return back()->with('notification', 'Terjadi kesalahan saat mengupdate data transportasi.');
+        }
+
+        $validated = [
+            'tanggal' => Carbon::parse($request->tanggal)->locale('id')->isoFormat('LL'),
+            'jam_kedatangan' => $request->jam_kedatangan,
+            'transporter_id' => $request->transporter_id,
+            'vehicle_no' => $request->vehicle_no,
+            'type_sj' => $request->type_sj,
+            'type_kend' => $request->type_kend,
+            'incot' => $request->incot,
+            'no_container' => $request->no_container,
+            'sheal' => $request->no_sheal,
+            'created_at' => $request->tanggal,
+            'updated_at' => $request->tanggal
+        ];
+
+        $transport->update($validated);
+        return redirect('/transport/data')->with('notification', 'berhasil mengupdate data transport.');
+    }
+
+
+    public function deleteTransport(int $id)
+    {
+        $transport = Transport::where('id', $id)->first();
+
+        if ($transport == null) {
+            return redirect('/transport/data')->with('notification', 'Data tidak ditemukan');
+        }
+
+        // melepaskan seluruh transaksi
+        $alltransaction =  $transport->transaction->pluck('id')->toArray();
+
+        if (count($alltransaction) > 0) {
+            foreach ($alltransaction as $id) {
+                $transaction = Transaction::where('id', $id)->first();
+                if ($transaction != null) {
+                    $transaction->update([
+                        'transport_id' => null
+                    ]);
+                }
+            }
+        }
+
+        $transport->delete();
+         return redirect('/transport/data')->with('notification', 'Data berhasil dihapus,data transaksi terkait dilepaskan');
     }
 }

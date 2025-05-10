@@ -39,4 +39,9 @@ class Transaction extends Model
     {
         return $this->belongsTo(Sloc::class, 'sloc');
     }
+
+    public function transport()
+    {
+        return $this->belongsTo(Transport::class,'transport_id');
+    }
 }

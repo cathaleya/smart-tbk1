@@ -53,7 +53,7 @@
 
                     <div class="lg:w-[48%] w-full  mb-2">
                         <h1 class="mb-2  text-gray-600">Foto Profil</h1>
-                        <input type="file" name="picture" class="w-full py-2 px-3 border bg-red-500 text-white">
+                        <input type="file" id="input-file-update-profile" name="picture" class="w-full py-2 px-3 border bg-red-500 text-white">
                         @error('picture')
                             <div class="text-red-500 text-[12px] mt-1">{{ $message }}</div>
                         @enderror

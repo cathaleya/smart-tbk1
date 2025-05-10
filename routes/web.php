@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
     Route::get('/update-profile/{user}', [UserController::class, 'updateProfileView'])->name('update-profile');
     Route::post('/update-profile', [UserController::class, 'updateProfile'])->name('update-profile');
-    
+
 
     Route::get('/lainnya', [Operasional::class, 'index'])->name('lainnya');
 
@@ -45,7 +45,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lainnya/material/{id}/edit', [Operasional::class, 'viewEditMaterial']);
     Route::post('/lainnya/material/edit', [Operasional::class, 'editMaterial']);
     Route::get('/lainnya/material/{id}/hapus', [Operasional::class, 'hapusMaterial']);
- 
+
     // TRANSPORTER ROUTE
     Route::get('/lainnya/transporter', [TransporterController::class, 'transporter']);
     Route::get('/lainnya/transporter/tambah', [TransporterController::class, 'viewTambahTransporter']);
@@ -53,7 +53,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lainnya/transporter/{id}/edit', [TransporterController::class, 'viewEditTransporter']);
     Route::post('/lainnya/transporter/edit', [TransporterController::class, 'editTransporter']);
     Route::get('/lainnya/transporter/{id}/hapus', [TransporterController::class, 'hapusTransporter']);
- 
+
     // TRANSPORTER ROUTE
     Route::get('/lainnya/transporter', [TransporterController::class, 'transporter']);
     Route::get('/lainnya/transporter/tambah', [TransporterController::class, 'viewTambahTransporter']);
@@ -77,7 +77,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lainnya/incot/{id}/edit', [IncotController::class, 'viewEditincot']);
     Route::post('/lainnya/incot/edit', [IncotController::class, 'editincot']);
     Route::get('/lainnya/incot/{id}/hapus', [IncotController::class, 'hapusincot']);
-   
+
     // SU ROUTE
     Route::get('/lainnya/su', [ItemUnitController::class, 'index']);
     Route::get('/lainnya/su/tambah', [ItemUnitController::class, 'viewTambahsu']);
@@ -109,8 +109,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lainnya/customer-type/{id}/edit', [CustomerTypeController::class, 'viewEditct']);
     Route::post('/lainnya/customer-type/edit', [CustomerTypeController::class, 'editct']);
     Route::get('/lainnya/customer-type/{id}/hapus', [CustomerTypeController::class, 'hapusct']);
-    
-    
+
+
     // transaction
     Route::get('/transaction', [TransactionController::class, 'index']);
     Route::get('/transaction/tambah-data', [TransactionController::class, 'viewAddTransaction']);
@@ -119,12 +119,17 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaction/edit-data', [TransactionController::class, 'editTransaction']);
     Route::get('/transaction/{id}/hapus-data', [TransactionController::class, 'deleteTransaction']);
     Route::get('/transaction/{id}/detail', [TransactionController::class, 'detailTransaction']);
-    
-    
+
+
     // transport
-    
+
     Route::get('/transport', [TransportController::class, 'index']);
     Route::get('/transport/tambah-data', [TransportController::class, 'addTransportView']);
+    Route::post('/transport/tambah-data', [TransportController::class, 'addTransport']);
+    Route::get('/transport/data', [TransportController::class, 'allTransport']);
+    Route::get('/transport/{id}/edit', [TransportController::class, 'viewEditTransport']);
+    Route::post('/transport/edit', [TransportController::class, 'EditTransport']);
+    Route::get('/transport/{id}/delete', [TransportController::class, 'deleteTransport']);
 
     Route::get('/dashboard', function () {
         return view('admin.dashboard', [
@@ -137,5 +142,4 @@ Route::middleware(['auth'])->group(function () {
             'title' => 'Delivery Order',
         ]);
     })->name('warehouse')->middleware('warehouse');
-
 });

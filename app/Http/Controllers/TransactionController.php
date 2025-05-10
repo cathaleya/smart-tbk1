@@ -49,9 +49,6 @@ class TransactionController extends Controller
         $kodematerial = Material::all();
         $su = ItemUnit::all();
         $sloc = Sloc::all();
-        $jenissuratjalans = JenisSuratJalan::all();
-        $kendtype = VehicleType::all();
-        $incot = Incot::all();
         $customertype = CustomerType::all();
         $negara = $semuaNegara;
 
@@ -60,8 +57,6 @@ class TransactionController extends Controller
             'kodematerial' => $kodematerial,
             'sus' => $su,
             'slocs' => $sloc,
-
-
             'customertypes' => $customertype,
             'negaras' => $negara,
 
@@ -74,6 +69,8 @@ class TransactionController extends Controller
             'tanggal' => 'required',
             'rdd' => 'required',
             'no_do' => 'required',
+            'no_so' => 'required',
+            'no_po' => 'required',
             'ref_doc' => 'required',
             'pelanggan' => 'required',
             'vessel_name' => 'required',
@@ -100,6 +97,8 @@ class TransactionController extends Controller
             'tanggal' => Carbon::parse($validated['tanggal'])->locale('id')->isoFormat('LL HH:mm'),
             'rdd' => $validated['rdd'],
             'no_do' => $validated['no_do'],
+            'no_so' => $validated['no_so'],
+            'no_po' => $validated['no_po'],
             'ref_doc' => $validated['ref_doc'],
             'pelanggan' => $validated['pelanggan'],
             'vessel_name' => $validated['vessel_name'],
@@ -185,6 +184,8 @@ class TransactionController extends Controller
             'tanggal' => 'required',
             'rdd' => 'required',
             'no_do' => 'required',
+            'no_so' => 'required',
+            'no_po' => 'required',
             'ref_doc' => 'required',
             'pelanggan' => 'required',
             'vessel_name' => 'required',
@@ -209,6 +210,8 @@ class TransactionController extends Controller
             'tanggal' => Carbon::parse($validated['tanggal'])->locale('id')->isoFormat('LL HH:mm'),
             'rdd' => $validated['rdd'],
             'no_do' => $validated['no_do'],
+            'no_so' => $validated['no_so'],
+            'no_po' => $validated['no_po'],
             'ref_doc' => $validated['ref_doc'],
             'pelanggan' => $validated['pelanggan'],
             'vessel_name' => $validated['vessel_name'],

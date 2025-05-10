@@ -54,6 +54,30 @@
                         @enderror
                     </div>
                     <div class=" w-full lg:w-[30%]">
+                        <h1 class="font-bold">No SO</h1>
+                        <input required required type="number" name="no_so" value="{{ old('no_so') }}"
+                            class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
+                            placeholder="Masukkan nomor so">
+
+                        @error('no_so')
+                            <div class="text-[12px] text-red-500 ">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class=" w-full lg:w-[30%]">
+                        <h1 class="font-bold">No PO</h1>
+                        <input required required type="number" name="no_po" value="{{ old('no_po') }}"
+                            class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
+                            placeholder="Masukkan nomor po">
+
+                        @error('no_po')
+                            <div class="text-[12px] text-red-500 ">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class=" w-full lg:w-[30%]">
                         <h1 class="font-bold">Ref Doc</h1>
                         <input required required type="number" name="ref_doc" value="{{ old('ref_Doc') }}"
                             class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
@@ -80,7 +104,7 @@
                         <h1 class="font-bold">Vessel Name </h1>
                         <input required required type="text" name="vessel_name" value="{{ old('vessel_name') }}"
                             class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
-                            placeholder="Masukkan nama pelanggan">
+                            placeholder="Masukkan nama vessel">
 
                         @error('vessel_name')
                             <div class="text-[12px] text-red-500 ">
@@ -199,7 +223,7 @@
                         <h1 class="font-bold">No Count</h1>
                         <input required name="no_count" required type="text" value="-"
                             class=" w-full focus:outline-none    focus:border-2 focus:border-red-50b0 py-1 px-3 border border-gray-500 rounded-md"
-                            placeholder="Masukkan nama pelanggan">
+                            placeholder="Masukkan no count">
                         @error('no_count')
                             <div class="text-[12px] text-red-500 ">
                                 {{ $message }}
@@ -230,7 +254,7 @@
                         <h1 class="font-bold">Berat/KG</h1>
                         <input required name="berat_kg" required type="number" value="{{ old('berat_kg') }}"
                             class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
-                            placeholder="Masukkan nama pelanggan">
+                            placeholder="Masukkan berat kg">
                         @error('berat_kg')
                             <div class="text-[12px] text-red-500 ">
                                 {{ $message }}
@@ -241,7 +265,7 @@
                         <h1 class="font-bold">TT/KG</h1>
                         <input required name="tt_kg" required type="number" value="{{ old('tt_kg') }}"
                             class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
-                            placeholder="Masukkan nama pelanggan">
+                            placeholder="Masukkan tt kg">
                         @error('tt_kg')
                             <div class="text-[12px] text-red-500 ">
                                 {{ $message }}
@@ -252,7 +276,7 @@
                         <h1 class="font-bold">Tonase</h1>
                         <input required name="tonase" required type="number" value="{{ old('tonase') }}"
                             class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
-                            placeholder="Masukkan nama pelanggan">
+                            placeholder="Masukkan tonase">
                         @error('tonase')
                             <div class="text-[12px] text-red-500 ">
                                 {{ $message }}

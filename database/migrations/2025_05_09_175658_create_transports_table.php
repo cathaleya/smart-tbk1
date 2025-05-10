@@ -14,11 +14,15 @@ return new class extends Migration
         Schema::create('transports', function (Blueprint $table) {
             $table->id();
             $table->string('vehicle_no');
-            $table->foreignId('transaction_id')->constrained('transactions')->cascadeOnDelete();
+       
             $table->foreignId('transporter_id')->constrained('transporters')->cascadeOnDelete();
             $table->foreignId('type_sj')->constrained('jenis_surat_jalans')->cascadeOnDelete();
             $table->foreignId('type_kend')->constrained('vehicle_types')->cascadeOnDelete();
             $table->foreignId('incot')->constrained('incots')->cascadeOnDelete();
+            $table->string('tanggal');
+            $table->string('no_container');
+            $table->string('sheal');
+            $table->string('jam_kedatangan');
             $table->timestamps();
         });
     }

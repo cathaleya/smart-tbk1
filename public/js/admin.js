@@ -14,8 +14,6 @@ $(document).ready(function () {
   })
 
 
-  // select
-  $('.js-example-basic-single').select2();
 
   $('.show-modal-button').on('click', function () {
     $('#modal').toggleClass('opacity-0 -translate-y-full');
@@ -90,15 +88,20 @@ $(document).ready(function () {
     });
   })
 
+  $('#input-file-update-profile')
+
+  $('form').on('submit', function () {
+    LoadingScreen()
+  })
+
+  // select
+  $('.js-example-basic-single').select2();
+  $('.js-example-basic-multiple').select2()
+  function LoadingScreen() {
+    $('#loading-screen').toggleClass('hidden flex')
+    $('#loading-screen').toggleClass('backdrop-blur-sm')
+  }
 })
 
 
 
-$('form').on('submit', function () {
-  LoadingScreen()
-})
-
-function LoadingScreen() {
-  $('#loading-screen').toggleClass('hidden flex')
-  $('#loading-screen').toggleClass('backdrop-blur-sm')
-}

@@ -24,7 +24,8 @@
     <div class="w-full h-screen flex font-inter overflow-x-hidden">
         <x-sidebar></x-sidebar>
         <div class="w-full lg:w-[80%] bg-gray-100">
-            <nav class="lg:hidden h-[80px] flex justify-end items-center px-5">
+            <nav class="lg:hidden h-[80px] flex justify-between items-center px-5">
+                <img src="{{ asset('img/logo/smart-logo.svg') }}" alt="" class="w-[150px]">
                 <span id="sidebar-toggle" class="text-red-500 hover:cursor-pointer">
                     <svg id="" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -63,6 +64,7 @@
     <script>
         AOS.init();
     </script>
+
 </body>
 
 </html>

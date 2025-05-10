@@ -55,6 +55,30 @@
                         @enderror
                     </div>
                     <div class=" w-full lg:w-[30%]">
+                        <h1 class="font-bold">No SO</h1>
+                        <input required required type="number" name="no_so" value="{{  $data->no_so }}"
+                            class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
+                            placeholder="Masukkan nomor so">
+
+                        @error('no_so')
+                            <div class="text-[12px] text-red-500 ">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class=" w-full lg:w-[30%]">
+                        <h1 class="font-bold">No PO</h1>
+                        <input required required type="number" name="no_po" value="{{  $data->no_po }}"
+                            class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
+                            placeholder="Masukkan nomor po">
+
+                        @error('no_po')
+                            <div class="text-[12px] text-red-500 ">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class=" w-full lg:w-[30%]">
                         <h1 class="font-bold">Ref Doc</h1>
                         <input required required type="number" name="ref_doc" value="{{ $data->ref_doc }}"
                             class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
