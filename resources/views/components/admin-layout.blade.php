@@ -36,7 +36,7 @@
                 </span>
 
             </nav>
-            <main class="p-2 lg:p-5 relative ">
+            <main class="p-2 lg:p-5  ">
                 {{ $slot }}
             </main>
             <footer class=" p-5 text-[13px]">
