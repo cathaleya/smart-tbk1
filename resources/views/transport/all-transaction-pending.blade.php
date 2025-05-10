@@ -48,8 +48,6 @@
                         <th class="px-6 py-3 text-left">Order Number</th>
                         <th class="px-6 py-3 text-left">Pelanggan</th>
                         <th class="px-6 py-3 text-left">Kota</th>
-                        <th class="px-6 py-3 text-left">status</th>
-
                         <th class="px-6 py-3 text-left">Action</th>
                     </tr>
                 </thead>
@@ -61,13 +59,6 @@
                                 <td class="px-6 py-4">{{ $transaction->no_do }}</td>
                                 <td class="px-6 py-4">{{ $transaction->pelanggan }}</td>
                                 <td class="px-6 py-4">{{ $transaction->kota }}</td>
-                                <td class="px-6 py-4">
-                                    <div
-                                        class="flex  gap-2 items-center justify-center rounded-full py-1 px-3 bg-gray-100">
-                                        <span class="w-2 h-2 bg-red-500 rounded-full flex-shrink-0"></span>
-                                        <span class="flex-shrink-0"> Belum ada data transport</span>
-                                    </div>
-                                </td>
                                 <td class="px-6 py-4">
                                     <div class="flex gap-2">
                                         <a href=""
