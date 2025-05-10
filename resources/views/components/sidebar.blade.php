@@ -1,6 +1,6 @@
 <aside class="lg:w-[20%]   shadow-2xl font-bold text-gray-500 overflow-hidden">
     <aside id="sidebar"
-        class="fixed lg:w-[20%] transition ease-out duration-700 translate-x-[-100%] lg:translate-x-0 w-[50%] h-full bg-white shadow-2xl  overflow-hidden">
+        class="fixed lg:w-[20%] z-[3] transition ease-out duration-700 translate-x-[-100%] lg:translate-x-0 w-[50%] h-full bg-white shadow-2xl  overflow-hidden">
         <div class="flex h-[10%]  justify-start items-center pl-5">
             <img src="{{ asset('img/logo/smart-logo.svg') }}" alt="" class="w-[150px] bg-white rounded-lg">
         </div>
