@@ -250,46 +250,54 @@
                         <h2 class="text-[10px] text-gray-500">Berikut adalah detail dari data Ekspedisi</h2>
                     </div>
                     <div class="w-full lg:w-[80%] mb-5 lg:mb-0 lg:pr-5 text-balance">
-                        @if ($transaction->transport->ekspedisi->logs !== null)
-                            <div class="w-full flex justify-center items-center">
-                                <div class="border-l-4 border-gray-300">
-                                    @foreach ($transaction->transport->ekspedisi->logs as $log)
-                                        @if ($log->status == 'Diterima oleh Penerima')
-                                            <div class="flex items-center pl-2 gap-2 mb-10">
-                                                <div class="">
-                                                    <div class="w-3 h-3 rounded-full {{ $log->status == 'Gagal dikirim' ? 'bg-red-500' : 'bg-green-500' }}"></div>
+                        @if ($transaction->transport !== null)
+                            @if ($transaction->transport->ekspedisi)
+                                <div class="w-full flex justify-center items-center">
+                                    <div class="border-l-4 border-gray-300">
+                                        @foreach ($transaction->transport->ekspedisi->logs as $log)
+                                            @if ($log->status == 'Diterima oleh Penerima')
+                                                <div class="flex items-center pl-2 gap-2 mb-10">
+                                                    <div class="">
+                                                        <div
+                                                            class="w-3 h-3 rounded-full {{ $log->status == 'Gagal dikirim' ? 'bg-red-500' : 'bg-green-500' }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="">
+                                                        <h3 class="text-gray-500 text-[12px]">
+                                                            {{ \Carbon\Carbon::parse($log->tanggal) }} </h3>
+                                                        <h1 class="font-bold ">{{ $log->status }} </h1>
+                                                    </div>
                                                 </div>
-                                                <div class="">
-                                                    <h3 class="text-gray-500 text-[12px]">
-                                                        {{ \Carbon\Carbon::parse($log->tanggal) }} </h3>
-                                                    <h1 class="font-bold ">{{ $log->status }} </h1>
+                                                <div class="flex items-center pl-2 gap-2 mb-10">
+                                                    <div class="">
+                                                        <div
+                                                            class="w-3 h-3 rounded-full {{ $log->status == 'Gagal dikirim' ? 'bg-red-500' : 'bg-green-500' }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="">
+                                                        <h3 class="text-gray-500 text-[12px]">
+                                                            {{ \Carbon\Carbon::parse($log->tanggal) }} </h3>
+                                                        <h1 class="font-bold ">Selesai </h1>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="flex items-center pl-2 gap-2 mb-10">
-                                                <div class="">
-                                                    <div class="w-3 h-3 rounded-full {{ $log->status == 'Gagal dikirim' ? 'bg-red-500' : 'bg-green-500' }}"></div>
+                                            @else
+                                                <div class="flex items-center pl-2 gap-2 mb-10">
+                                                    <div class="">
+                                                        <div
+                                                            class="w-3 h-3 rounded-full {{ $log->status == 'Gagal dikirim' ? 'bg-red-500' : 'bg-green-500' }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="">
+                                                        <h3 class="text-gray-500 text-[12px]">
+                                                            {{ \Carbon\Carbon::parse($log->tanggal) }} </h3>
+                                                        <h1 class="font-bold ">{{ $log->status }} </h1>
+                                                    </div>
                                                 </div>
-                                                <div class="">
-                                                    <h3 class="text-gray-500 text-[12px]">
-                                                        {{ \Carbon\Carbon::parse($log->tanggal) }} </h3>
-                                                    <h1 class="font-bold ">Selesai </h1>
-                                                </div>
-                                            </div>
-                                        @else
-                                            <div class="flex items-center pl-2 gap-2 mb-10">
-                                                <div class="">
-                                                    <div class="w-3 h-3 rounded-full {{ $log->status == 'Gagal dikirim' ? 'bg-red-500' : 'bg-green-500' }}"></div>
-                                                </div>
-                                                <div class="">
-                                                    <h3 class="text-gray-500 text-[12px]">
-                                                        {{ \Carbon\Carbon::parse($log->tanggal) }} </h3>
-                                                    <h1 class="font-bold ">{{ $log->status }} </h1>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
+                                            @endif
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         @else
                             <div class="w-full flex justify-center items-center p-5 bg-gray-100 text-red-500">
                                 <h1>Data belum tersedia</h1>
