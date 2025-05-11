@@ -158,18 +158,26 @@
                                     @endif
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap truncate">
-                                    @if ($td->transport->ekspedisi)
-                                        @if ($td->transport->ekspedisi->ekspedisi_status_id == 6)
-                                            <span
-                                                class="inline-flex items-center gap-1 px-3 py-1  bg-gray-100 rounded-full text-gray-600">
-                                                <span class="w-2 h-2    bg-green-400 rounded-full"></span>
-                                                Delivered
-                                            </span>
+                                    @if ($td->transport)
+                                        @if ($td->transport->ekspedisi)
+                                            @if ($td->transport->ekspedisi->ekspedisi_status_id == 6)
+                                                <span
+                                                    class="inline-flex items-center gap-1 px-3 py-1  bg-gray-100 rounded-full text-gray-600">
+                                                    <span class="w-2 h-2    bg-green-400 rounded-full"></span>
+                                                    Delivered
+                                                </span>
+                                            @else
+                                                <span
+                                                    class="inline-flex items-center gap-1 px-3 py-1  bg-gray-100 rounded-full text-gray-600">
+                                                    <span class="w-2 h-2    bg-yellow-400 rounded-full"></span>
+                                                    On Going
+                                                </span>
+                                            @endif
                                         @else
                                             <span
                                                 class="inline-flex items-center gap-1 px-3 py-1  bg-gray-100 rounded-full text-gray-600">
-                                                <span class="w-2 h-2    bg-yellow-400 rounded-full"></span>
-                                                On Going
+                                                <span class="w-2 h-2    bg-red-400 rounded-full"></span>
+                                                Pending
                                             </span>
                                         @endif
                                     @else
