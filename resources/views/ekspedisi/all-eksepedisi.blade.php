@@ -9,7 +9,7 @@
     <div class="">
         @if (count($ekspedisis) > 0)
             @foreach ($ekspedisis as $ekspedisi)
-                <div class="rounded-xl shadow overflow-hidden border bg-white border-gray-200 ">
+                <div class="rounded-xl shadow overflow-x-scroll border bg-white border-gray-200 ">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50 text-gray-600 text-sm font-semibold">
                             <tr>
