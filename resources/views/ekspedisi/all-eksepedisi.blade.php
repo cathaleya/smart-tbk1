@@ -8,22 +8,23 @@
 
     <div class="">
         @if (count($ekspedisis) > 0)
-            @foreach ($ekspedisis as $ekspedisi)
-                <div class="rounded-xl shadow overflow-x-scroll border bg-white border-gray-200 ">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50 text-gray-600 text-sm font-semibold">
-                            <tr>
-                                <th class="px-6 py-3 text-left">Order Number</th>
-                                <th class="px-6 py-3 text-left">Material Number</th>
-                                <th class="px-6 py-3 text-left">Alamat</th>
-                                <th class="px-6 py-3 text-left">Type Kend</th>
-                                <th class="px-6 py-3 text-left">No Kend</th>
-                                <th class="px-6 py-3 text-left">transporter</th>
-                                <th class="px-6 py-3 text-left">Kota</th>
-                                <th class="px-6 py-3 text-left">Status Pengiriman</th>
-                                <th class="px-6 py-3 text-left">Action</th>
-                            </tr>
-                        </thead>
+
+            <div class="rounded-xl shadow overflow-x-scroll border bg-white border-gray-200 ">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50 text-gray-600 text-sm font-semibold">
+                        <tr>
+                            <th class="px-6 py-3 text-left">Order Number</th>
+                            <th class="px-6 py-3 text-left">Material Number</th>
+                            <th class="px-6 py-3 text-left">Alamat</th>
+                            <th class="px-6 py-3 text-left">Type Kend</th>
+                            <th class="px-6 py-3 text-left">No Kend</th>
+                            <th class="px-6 py-3 text-left">transporter</th>
+                            <th class="px-6 py-3 text-left">Kota</th>
+                            <th class="px-6 py-3 text-left">Status Pengiriman</th>
+                            <th class="px-6 py-3 text-left">Action</th>
+                        </tr>
+                    </thead>
+                    @foreach ($ekspedisis as $ekspedisi)
                         <tbody class="divide-y divide-gray-100 text-sm">
                             <tr class="bg-white">
                                 <td class="px-6 py-4 font-bold text-gray-700">
@@ -72,15 +73,17 @@
                                     <a href="/ekspedisi/edit/{{ $ekspedisi->id }}">
                                         <button class="py-2 px-3 bg-blue-500 text-white rounded-md">Edit</button>
                                     </a>
-                                    <a href="" onclick="return confirm('Apakah anda yakin ingin menghapus?')"> 
+                                    <a href="" onclick="return confirm('Apakah anda yakin ingin menghapus?')">
                                         <button class="py-2 px-3 bg-red-500 text-white rounded-md">Hapus</button>
                                     </a>
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
-                </div>
-            @endforeach
+                    @endforeach
+
+                </table>
+            </div>
+
         @endif
     </div>
 </x-admin-layout>
