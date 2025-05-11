@@ -56,7 +56,7 @@
                     </div>
                     <div class=" w-full lg:w-[30%]">
                         <h1 class="font-bold">No SO</h1>
-                        <input required required type="number" name="no_so" value="{{  $data->no_so }}"
+                        <input required required type="number" name="no_so" value="{{ $data->no_so }}"
                             class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
                             placeholder="Masukkan nomor so">
 
@@ -68,7 +68,7 @@
                     </div>
                     <div class=" w-full lg:w-[30%]">
                         <h1 class="font-bold">No PO</h1>
-                        <input required required type="number" name="no_po" value="{{  $data->no_po }}"
+                        <input required required type="number" name="no_po" value="{{ $data->no_po }}"
                             class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
                             placeholder="Masukkan nomor po">
 
@@ -96,6 +96,28 @@
                             class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
                             placeholder="Masukkan nama pelanggan">
                         @error('pelanggan')
+                            <div class="text-[12px] text-red-500 ">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class=" w-full lg:w-[30%]">
+                        <h1 class="font-bold">Customer No</h1>
+                        <input required required type="number" name="customer_no" value="{{ $data->customer_no }}"
+                            class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
+                            placeholder="Masukkan nama customer_no">
+                        @error('customer_no')
+                            <div class="text-[12px] text-red-500 ">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class=" w-full lg:w-[30%]">
+                        <h1 class="font-bold">Address</h1>
+                        <input required required type="text" name="address" value="{{ $data->address }}"
+                            class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
+                            placeholder="Masukkan nama address">
+                        @error('address')
                             <div class="text-[12px] text-red-500 ">
                                 {{ $message }}
                             </div>
@@ -268,9 +290,9 @@
                                 @foreach ($customertypes as $customertype)
                                     @if ($customertype->id == $data->type_customer)
                                         <option value="{{ $customertype->id }}" selected>
-                                        {{ $customertype->name }}</option>
+                                            {{ $customertype->name }}</option>
                                     @endif
-                                        <option value="{{ $customertype->id }}">
+                                    <option value="{{ $customertype->id }}">
                                         {{ $customertype->name }}</option>
                                 @endforeach
                                 }

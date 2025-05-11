@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Sloc;
+use App\Models\ItemUnit;
+use App\Models\Material;
+use App\Models\Transport;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Transaction extends Model
 {
@@ -12,10 +16,7 @@ class Transaction extends Model
 
     protected $guarded = ['id'];
 
-    public function incot()
-    {
-        return $this->belongsTo(Incot::class, 'incot');
-    }
+
 
     public function material()
     {
@@ -27,18 +28,21 @@ class Transaction extends Model
         return $this->belongsTo(ItemUnit::class, 'su');
     }
 
-    public function typesj()
-    {
-        return $this->belongsTo(JenisSuratJalan::class, 'type_sj');
-    }
-    public function typekend()
-    {
-        return $this->belongsTo(VehicleType::class, 'type_kend');
-    }
-    public function sloc()
+    public function slocrelation()
     {
         return $this->belongsTo(Sloc::class, 'sloc');
     }
+
+    public function itemunit()
+    {
+         return $this->belongsTo(ItemUnit::class, 'su');
+    }
+
+    public function tipecustomer()
+    {
+         return $this->belongsTo(CustomerType::class, 'type_customer');
+    }
+    
 
     public function transport()
     {

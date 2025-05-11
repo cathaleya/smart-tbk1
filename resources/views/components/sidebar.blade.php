@@ -1,4 +1,4 @@
-<aside class="lg:w-[20%]   shadow-2xl font-bold text-gray-500 overflow-hidden">
+<aside class="lg:w-[20%] md:hidden lg:block  shadow-2xl font-bold text-gray-500 overflow-hidden">
     <aside id="sidebar"
         class="fixed lg:w-[20%] z-[3] transition ease-out duration-700 translate-x-[-100%] lg:translate-x-0 w-[50%] h-full bg-white shadow-2xl  overflow-hidden">
         <div class="flex h-[10%]  justify-start items-center pl-5">
@@ -30,6 +30,22 @@
                             <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" />
                         </svg>
                         <span>Semua Pengguna</span>
+                    </span>
+                </a>
+                <a href="/ekspedisi"
+                    class="{{ Request::is('ekspedisi/*') ? 'bg-red-500 text-white ' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5 justify-start pl-2 rounded-lg    ">
+                    <span class="flex gap-2 items-center ">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="lucide lucide-container-icon lucide-container">
+                            <path
+                                d="M22 7.7c0-.6-.4-1.2-.8-1.5l-6.3-3.9a1.72 1.72 0 0 0-1.7 0l-10.3 6c-.5.2-.9.8-.9 1.4v6.6c0 .5.4 1.2.8 1.5l6.3 3.9a1.72 1.72 0 0 0 1.7 0l10.3-6c.5-.3.9-1 .9-1.5Z" />
+                            <path d="M10 21.9V14L2.1 9.1" />
+                            <path d="m10 14 11.9-6.9" />
+                            <path d="M14 19.8v-8.1" />
+                            <path d="M18 17.5V9.4" />
+                        </svg>
+                        <span>Ekspedisi</span>
                     </span>
                 </a>
             @endcan
@@ -69,7 +85,7 @@
                 </a>
             @endcan
             @can('warehouse')
-                <a href="{{ route('warehouse') }}"
+                <a href="/warehouse/pending"
                     class="{{ Request::is('warehouse*') ? 'bg-red-500 text-white' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5 justify-start pl-2 rounded-lg  ">
                     <span class="flex gap-2 items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"

@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('transports', function (Blueprint $table) {
             $table->id();
             $table->string('vehicle_no');
-       
+
+            $table->string('reference_no');
+            $table->timestamp('reference_date');
+            $table->string('plant');
+            $table->bigInteger('shipment');
             $table->foreignId('transporter_id')->constrained('transporters')->cascadeOnDelete();
             $table->foreignId('type_sj')->constrained('jenis_surat_jalans')->cascadeOnDelete();
             $table->foreignId('type_kend')->constrained('vehicle_types')->cascadeOnDelete();
@@ -23,6 +27,12 @@ return new class extends Migration
             $table->string('no_container');
             $table->string('sheal');
             $table->string('jam_kedatangan');
+            $table->timestamp('truck_in')->nullable();
+            $table->timestamp('start_loading')->nullable();
+            $table->timestamp('finish_loading')->nullable();
+            $table->timestamp('truck_out')->nullable();
+            $table->timestamp('eta')->nullable();
+            $table->boolean('izin')->default(false);
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\CustomerType;
+use App\Models\EkspedisiStatus;
 use App\Models\Incot;
 use App\Models\ItemUnit;
 use App\Models\JenisSuratJalan;
@@ -26,7 +27,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        
+
 
         Permission::factory()->create([
             'name' => 'Kontrol Pengguna',
@@ -93,18 +94,26 @@ class DatabaseSeeder extends Seeder
 
 
         Material::factory()->create([
-            'material_number' => '8123123123',
-            'description' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod consectetur nesciunt animi, omnis porro tenetur qui officiis veniam quam iusto.'
+            'material_number' => '821408',
+            'description' => 'Olera SHT 36-39 RSPO SG(0320) 1x20Kg Ctn'
         ]);
 
         Material::factory()->create([
-            'material_number' => '62134123123',
-            'description' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod consectetur nesciunt animi, omnis porro tenetur qui officiis veniam quam iusto.'
+            'material_number' => '812088',
+            'description' => 'Padi MGRN (1123) 60x200G Sch.'
+        ]);
+        Material::factory()->create([
+            'material_number' => '831601',
+            'description' => 'I-soc Premium CF 41 SG.'
+        ]);
+        Material::factory()->create([
+            'material_number' => '822779',
+            'description' => 'Flagship SHT RSPOMB (E)(1223) 20Kg Ctn.'
         ]);
 
         Material::factory()->create([
-            'material_number' => '62132123123',
-            'description' => 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod consectetur nesciunt animi, omnis porro tenetur qui officiis veniam quam iusto.'
+            'material_number' => '822749',
+            'description' => 'Flagship SHT AF (E)(0823) 20Kg Ctn.'
         ]);
 
         Material::factory()->create([
@@ -113,22 +122,22 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Transporter::factory()->create([
-            'name' => 'PT.indah Sentosa',
+            'name' => 'CAKRAINDO',
             'transporter_id' => 312312312
         ]);
-    
+
         Transporter::factory()->create([
-            'name' => 'PT.Sentosa Jaya',
+            'name' => 'E-WAY',
             'transporter_id' => 3123123123
         ]);
- 
+
         Transporter::factory()->create([
-            'name' => 'PT.Haji makmur',
+            'name' => 'BSA',
             'transporter_id' => 3123213124
         ]);
-  
+
         Transporter::factory()->create([
-            'name' => 'PT.Velocity',
+            'name' => 'GLOVIS',
             'transporter_id' => 2131233121
         ]);
 
@@ -138,27 +147,22 @@ class DatabaseSeeder extends Seeder
             'name' => 'GBJ',
             'desc' => 'Gudang 1'
         ]);
-   
-        Sloc::factory()->create([
-            'name' => 'HBK',
-            'desc' => 'Gudang 2'
-        ]);
-        Sloc::factory()->create([
-            'name' => 'ABV',
-            'desc' => 'Gudang 3'
-        ]);
-   
-   
+
+
         Incot::factory()->create([
-            'name' => 'CFF',
+            'name' => 'FOB',
             'desc' => 'peraturan 1'
         ]);
-     
+
         Incot::factory()->create([
             'name' => 'FCO',
             'desc' => 'peraturan 2'
         ]);
-    
+        Incot::factory()->create([
+            'name' => 'CIF',
+            'desc' => 'peraturan 3'
+        ]);
+
         ItemUnit::factory()->create([
             'name' => 'BOX',
             'desc' => 'satuan unit 1'
@@ -167,12 +171,12 @@ class DatabaseSeeder extends Seeder
             'name' => 'PC',
             'desc' => 'satuan unit 2'
         ]);
-      
+
         JenisSuratJalan::factory()->create([
             'name' => 'IIE',
             'desc' => 'Jenis surat jalan 1'
         ]);
-   
+
         JenisSuratJalan::factory()->create([
             'name' => 'PO IIE',
             'desc' => 'Jenis surat jalan 2'
@@ -193,6 +197,35 @@ class DatabaseSeeder extends Seeder
         CustomerType::factory()->create([
             'name' => 'Branded',
             'desc' => 'tipe 1'
+        ]);
+
+        EkspedisiStatus::factory()->create([
+            'name' => 'order_processed',
+            'desc' => 'Order diproses'
+        ]);
+        EkspedisiStatus::factory()->create([
+            'name' => 'at_origin_hub',
+            'desc' => 'Diterima di Gudang Asal'
+        ]);
+        EkspedisiStatus::factory()->create([
+            'name' => 'in_transit',
+            'desc' => 'Dalam perjalanan ke hub regional'
+        ]);
+        EkspedisiStatus::factory()->create([
+            'name' => 'at_destination_hub',
+            'desc' => 'Tiba di Gudang Tujuan'
+        ]);
+        EkspedisiStatus::factory()->create([
+            'name' => 'out_for_delivery',
+            'desc' => 'Dalam Pengantaran ke Alamat'
+        ]);
+        EkspedisiStatus::factory()->create([
+            'name' => 'delivered',
+            'desc' => 'Diterima oleh Penerima'
+        ]);
+        EkspedisiStatus::factory()->create([
+            'name' => 'Fail',
+            'desc' => 'Pengiriman gagal'
         ]);
     }
 }

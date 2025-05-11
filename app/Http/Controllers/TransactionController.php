@@ -18,12 +18,11 @@ class TransactionController extends Controller
     public function index(Request $request)
     {
         $query = Transaction::query();
-        if ($request->keyword)
-        {   
-            $query->where('no_do','LIKE','%'.$request->keyword.'%');
+        if ($request->keyword) {
+            $query->where('no_do', 'LIKE', '%' . $request->keyword . '%');
         }
 
-        
+
         $transactionData = $query->paginate(10);
         return view('sales.transaction', [
             'title' => 'Transaction Data',
@@ -73,6 +72,8 @@ class TransactionController extends Controller
             'no_po' => 'required',
             'ref_doc' => 'required',
             'pelanggan' => 'required',
+            'customer_no' => 'required',
+            'address' => 'required',
             'vessel_name' => 'required',
             'kode_material' => 'required',
             'qty' => 'required',
@@ -106,7 +107,9 @@ class TransactionController extends Controller
             'qty' => $validated['qty'],
             'su' => $validated['su'],
             'sloc' => $validated['sloc'],
-
+            'customer_no' => $validated['customer_no'],
+            'address' => $validated['address'],
+            'jenis_transaksi' => $validated['kode_negara'] == 'ID' ? 'lokal' : 'ekspor',
             'kode_negara' => $validated['kode_negara'],
             'kota' => $validated['kota'],
             'no_count' => $validated['no_count'],
@@ -188,6 +191,8 @@ class TransactionController extends Controller
             'no_po' => 'required',
             'ref_doc' => 'required',
             'pelanggan' => 'required',
+            'customer_no' => 'required',
+            'address' => 'required',
             'vessel_name' => 'required',
             'kode_material' => 'required',
             'qty' => 'required',
@@ -219,8 +224,8 @@ class TransactionController extends Controller
             'qty' => $validated['qty'],
             'su' => $validated['su'],
             'sloc' => $validated['sloc'],
-
-
+            'customer_no' => $validated['customer_no'],
+            'address' => $validated['address'],
             'kode_negara' => $validated['kode_negara'],
             'kota' => $validated['kota'],
             'no_count' => $validated['no_count'],
@@ -228,9 +233,12 @@ class TransactionController extends Controller
             'berat_kg' => $validated['berat_kg'],
             'tt_kg' => $validated['tt_kg'],
             'tonase' => $validated['tonase'],
+            'jenis_transaksi' => $validated['kode_negara'] == 'ID' ? 'lokal' : 'ekspor',
             'tanggal_transaksi_dibuat' => $validated['tanggal'],
             'updated_at' => now()->timezone('Asia/Jakarta'),
         ];
+
+
 
         $transaction->update($validatedData);
         return redirect('/transaction')->with('notification', 'Data berhasil diupdate');
@@ -247,10 +255,17 @@ class TransactionController extends Controller
         return redirect('/transaction')->with('notification', 'Data berhasil dihapus');
     }
 
-    public function detailTransaction()
+    public function detailTransaction(int $id)
     {
+        $transaction = Transaction::with(['material', 'su', 'slocrelation', 'tipecustomer', 'itemunit', 'transport.tipekendaraan', 'transport.jenissuratjalan', 'transport.incotrelation'])->where('id', $id)->first();
+        if(!$transaction)
+        {
+            return redirect()->back()->with('notification','Data tidak ditemukan');
+        }
+
         return view('sales.detail-transaction', [
-            'title' => 'Transaction Detail'
+            'title' => 'Transaction Detail',
+            'transaction' => $transaction
         ]);
     }
 }

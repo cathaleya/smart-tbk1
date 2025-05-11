@@ -22,5 +22,23 @@ class Transport extends Model
         return $this->belongsTo(Transporter::class);
     }
 
+    public function tipekendaraan()
+    {
+        return $this->belongsTo(VehicleType::class, 'type_kend');
+    }
 
+
+    public function jenissuratjalan()
+    {
+        return $this->belongsTo(JenisSuratJalan::class, 'type_sj');
+    }
+    public function incotrelation()
+    {
+        return $this->belongsTo(Incot::class, 'incot');
+    }
+
+    public function ekspedisi()
+    {
+        return $this->hasOne(Ekspedisi::class);
+    }
 }

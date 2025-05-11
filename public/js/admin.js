@@ -101,6 +101,29 @@ $(document).ready(function () {
     $('#loading-screen').toggleClass('hidden flex')
     $('#loading-screen').toggleClass('backdrop-blur-sm')
   }
+
+  $('.izin-muat-barang').on('click', function () {
+    $.ajax({
+      url: '/transport/update/izin',
+      type: 'POST',
+      data: {
+        id: $(this).data('id'),
+        check: $(this).prop('checked'),
+        _token: $('meta[name="csrf-token"]').attr('content')
+      },
+      success: function (response) {
+        console.log(response);
+      },
+      error: function (xhr, status, error) {
+        if (xhr.status == 419) {
+          alert('Sesi Anda telah habis. Silakan login kembali.');
+        } else {
+          alert('Terjadi kesalahan. Silakan coba lagi.');
+        }
+      }
+    });
+
+  })
 })
 
 

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title }}</title>
     {{-- aos --}}
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -24,7 +25,7 @@
     <div class="w-full h-screen flex font-inter overflow-x-hidden">
         <x-sidebar></x-sidebar>
         <div class="w-full lg:w-[80%] bg-gray-100">
-            <nav class="lg:hidden h-[80px] flex justify-between items-center px-5">
+            <nav class="lg:hidden md:hidden h-[80px] flex justify-between items-center px-5">
                 <img src="{{ asset('img/logo/smart-logo.svg') }}" alt="" class="w-[150px]">
                 <span id="sidebar-toggle" class="text-red-500 hover:cursor-pointer">
                     <svg id="" xmlns="http://www.w3.org/2000/svg" width="30" height="30"

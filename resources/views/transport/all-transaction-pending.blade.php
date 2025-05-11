@@ -1,17 +1,18 @@
 <x-admin-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
-
+    <div class="mb-5">
+        <h1 class="lg:text-3xl text-red-500 font-bold">Data Transaksi Pending</h1>
+        <h2 class="text-[10px] lg:text-sm" class="text-gray-500">Berikut adalah seluruh data transaksi yang pending
+            (belum diatur
+            jadwal pengirimannya)</h2>
+    </div>
     <x-navbar>
         <x-slot:createLink>/transport/tambah-data</x-slot:createLink>
         <x-slot:printLink></x-slot:printLink>
     </x-navbar>
     <div class="">
-        <div class="mb-5">
-            <h1 class="lg:text-3xl text-red-500 font-bold">Data Transaksi Pending</h1>
-            <h2 class="text-[10px] lg:text-sm" class="text-gray-500">Berikut adalah seluruh data transaksi yang pending (belum diatur
-                jadwal pengirimannya)</h2>
-        </div>
-        <div class="w-full flex gap-5 text-[12px] mb-5">
+
+        <div class="w-full flex gap-5 text-[12px] mb-5 overflow-x-scroll">
             <a href="/transport"
                 class="py-1 px-4 rounded-lg hover:transform hover:scale-110 transition ease-out duration-200 hover:bg-white hover:text-red-500 bg-red-500 text-white flex items-center justify-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -61,7 +62,7 @@
                                 <td class="px-6 py-4">{{ $transaction->kota }}</td>
                                 <td class="px-6 py-4">
                                     <div class="flex gap-2">
-                                        <a href=""
+                                        <a href="/information-about-transaction/{{ $transaction->id }}/detail"
                                             class="py-1 px-3 bg-green-500 text-white rounded-md">Detail</a>
                                     </div>
                                 </td>

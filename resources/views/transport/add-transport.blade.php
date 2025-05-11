@@ -162,7 +162,7 @@
                                     <td class="border  p-2">Vehicle No</td>
                                     <td class="border  p-2">
                                         <div class="w-full">
-                                            <input type="number" name="vehicle_no"
+                                            <input type="text" name="vehicle_no"
                                                 class="w-full py-1 px-3 border border-gray-500 rounded-md focus:outline-none">
                                             @error('vehicle_no')
                                                 <div class="text-[12px] text-red-500 ">
@@ -195,6 +195,62 @@
                                             <input type="text" name="no_sheal"
                                                 class="w-full py-1 px-3 border border-gray-500 rounded-md focus:outline-none">
                                             @error('no_sheal')
+                                                <div class="text-[12px] text-red-500 ">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="border p-2">
+                                    <td class="border  p-2">Reference No</td>
+                                    <td class="border  p-2">
+                                        <div class="w-full">
+                                            <input type="text" name="reference_no"
+                                                class="w-full py-1 px-3 border border-gray-500 rounded-md focus:outline-none">
+                                            @error('reference_no')
+                                                <div class="text-[12px] text-red-500 ">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="border p-2">
+                                    <td class="border  p-2">Reference Date</td>
+                                    <td class="border  p-2">
+                                        <div class="w-full">
+                                            <input type="datetime-local" name="reference_date"
+                                                class="w-full py-1 px-3 border border-gray-500 rounded-md focus:outline-none">
+                                            @error('reference_date')
+                                                <div class="text-[12px] text-red-500 ">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="border p-2">
+                                    <td class="border  p-2">Plant</td>
+                                    <td class="border  p-2">
+                                        <div class="w-full">
+                                            <input type="text" name="plant"
+                                                class="w-full py-1 px-3 border border-gray-500 rounded-md focus:outline-none">
+                                            @error('plant')
+                                                <div class="text-[12px] text-red-500 ">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="border p-2">
+                                    <td class="border  p-2">Shipment</td>
+                                    <td class="border  p-2">
+                                        <div class="w-full">
+                                            <input type="number" name="shipment"
+                                                class="w-full py-1 px-3 border border-gray-500 rounded-md focus:outline-none">
+                                            @error('shipment')
                                                 <div class="text-[12px] text-red-500 ">
                                                     {{ $message }}
                                                 </div>

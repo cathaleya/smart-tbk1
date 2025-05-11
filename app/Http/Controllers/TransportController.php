@@ -59,6 +59,10 @@ class TransportController extends Controller
             'do_id.*' => 'required|distinct|exists:transactions,id',
             'transporter_id' => "required",
             'type_sj' => "required",
+            'reference_no' => "required",
+            'reference_date' => "required",
+            'plant' => "required",
+            'shipment' => "required",
             'type_kend' => "required",
             'incot' => "required",
             'no_container' => "required",
@@ -75,6 +79,10 @@ class TransportController extends Controller
             'type_sj' => $request->type_sj,
             'type_kend' => $request->type_kend,
             'incot' => $request->incot,
+            'reference_no' => $request->reference_no,
+            'reference_date' => $request->reference_date,
+            'plant' => $request->plant,
+            'shipment' => $request->shipment,
             'no_container' => $request->no_container,
             'sheal' => $request->no_sheal,
             'created_at' => $request->tanggal
@@ -155,6 +163,10 @@ class TransportController extends Controller
             'jam_kedatangan' => 'required',
             'do_id' => 'required|array',
             'do_id.*' => 'required|distinct|exists:transactions,id',
+            'reference_no' => "required",
+            'reference_date' => "required",
+            'plant' => "required",
+            'shipment' => "required",
             'transporter_id' => "required",
             'type_sj' => "required",
             'type_kend' => "required",
@@ -201,6 +213,10 @@ class TransportController extends Controller
             'transporter_id' => $request->transporter_id,
             'vehicle_no' => $request->vehicle_no,
             'type_sj' => $request->type_sj,
+            'reference_no' => $request->reference_no,
+            'reference_date' => $request->reference_date,
+            'plant' => $request->plant,
+            'shipment' => $request->shipment,
             'type_kend' => $request->type_kend,
             'incot' => $request->incot,
             'no_container' => $request->no_container,
@@ -237,6 +253,43 @@ class TransportController extends Controller
         }
 
         $transport->delete();
-         return redirect('/transport/data')->with('notification', 'Data berhasil dihapus,data transaksi terkait dilepaskan');
+        return redirect('/transport/data')->with('notification', 'Data berhasil dihapus,data transaksi terkait dilepaskan');
+    }
+
+    public function detailTransport(int $id)
+    {
+        $transport = Transport::with(['transaction.material', 'transaction.su', 'transaction.slocrelation', 'transaction.tipecustomer', 'transaction.itemunit', 'tipekendaraan', 'jenissuratjalan', 'incotrelation', 'transporter'])->where('id', $id)->first();
+        if (!$transport) {
+            return redirect()->back()->with('notification','Data tidak ditemukan');
+        }
+        return view('transport.detail-transport', [
+            'title' => 'Transport Detail',
+            'transport' => $transport
+        ]);
+    }
+
+    public function updateIzin(Request $request)
+    {
+        $id = $request->input('id');
+        $check = filter_var($request->input('check'), FILTER_VALIDATE_BOOLEAN);
+
+        $transport = Transport::find($id);
+
+        if (!$transport) {
+            return response()->json(['status' => 'gagal'], 404);
+        }
+
+        $transport->update([
+            'izin' => $check,
+            'truck_in' => null ,
+            'start_loading' =>  null ,
+            'finish_loading' =>  null ,
+            'truck_out' =>  null ,
+            'eta' =>  null ,
+        ]);
+
+        $message = $check ? 'berhasil memberikan izin' : 'berhasil menghapus izin';
+
+        return response()->json(['status' => $message], 200);
     }
 }

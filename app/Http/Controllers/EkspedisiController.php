@@ -1,0 +1,90 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Ekspedisi;
+use App\Models\EkspedisiLogs;
+use App\Models\EkspedisiStatus;
+use App\Models\Transport;
+use Illuminate\Http\Request;
+
+class EkspedisiController extends Controller
+{
+    //
+
+    public function index(Request $request)
+    {
+        $query = Ekspedisi::with(['status', 'transport', 'transport.transaction', 'transport.tipekendaraan', 'transport.transporter']);
+        if ($request->keyword) {
+            $keyword = $request->keyword;
+            $query->whereHas('transport.transaction', function ($query) use ($keyword) {
+                $query->where('no_do', 'LIKE', '%' . $keyword . '%');
+            });
+        }
+
+        $ekspedisis = $query->paginate(20);
+        return view('ekspedisi.all-eksepedisi', [
+            'title' => 'Seluruh Ekspedisi',
+            'ekspedisis' => $ekspedisis
+        ]);
+    }
+
+    public function updateEkspedisi(string $string)
+    {
+        $id = (int) base64_decode($string);
+        $transport = Transport::with(['ekspedisi', 'transaction'])->find($id);
+        if (!$transport) {
+            return redirect('/')->with('notification', 'data tidak ditemukan');
+        }
+
+        $tujuanSelanjutnya = 'Pengiriman selesai';
+        if ($transport->ekspedisi->ekspedisi_status_id !== 6) {
+            $ekspedisiStatus = EkspedisiStatus::where('id', $transport->ekspedisi->ekspedisi_status_id + 1)->first();
+            $tujuanSelanjutnya  = $ekspedisiStatus->desc;
+        }
+
+
+
+        return view('ekspedisi.update-ekspedisi', [
+            'title' => 'Update Ekspedisi',
+            'transport' => $transport,
+            'tujuanselanjutnya' => $tujuanSelanjutnya
+        ]);
+    }
+
+    public function updateStatusEksepedisi(int $id)
+    {
+        $transport = Transport::with(['ekspedisi', 'transaction'])->find($id);
+        if (!$transport) {
+            return redirect('/')->with('notification', 'data tidak ditemukan');
+        }
+
+        $ekspedisi = Ekspedisi::find($transport->ekspedisi->id);
+        if (!$ekspedisi) {
+            return redirect('/')->with('notification', 'data tidak ditemukan');
+        }
+
+        if ($ekspedisi->ekspedisi_status_id == 6) {
+
+
+            return redirect('/')->with('notification', 'Pengiriman telah selesai');
+        }
+
+
+        $status = $ekspedisi->ekspedisi_status_id + 1;
+
+        $ekspedisi->update([
+            'ekspedisi_status_id' => $status
+        ]);
+
+        $statusekspedisi = EkspedisiStatus::find($status);
+
+        EkspedisiLogs::create([
+            'ekspedisi_id' => $ekspedisi->id,
+            'status' => $statusekspedisi->desc,
+            'tanggal' => now()->timezone('Asia/Jakarta')
+        ]);
+
+        return redirect()->back()->with('notification', 'Berhasil mengupdate status menjadi ' . $ekspedisi->status->desc);
+    }
+}

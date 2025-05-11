@@ -91,10 +91,32 @@
                     </div>
                     <div class=" w-full lg:w-[30%]">
                         <h1 class="font-bold">Pelanggan</h1>
-                        <input required required type="text" name="pelanggan" {{ old('pelanggan') }}
+                        <input required required type="text" name="pelanggan" value="{{ old('pelanggan') }}"
                             class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
                             placeholder="Masukkan nama pelanggan">
                         @error('pelanggan')
+                            <div class="text-[12px] text-red-500 ">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class=" w-full lg:w-[30%]">
+                        <h1 class="font-bold">Customer No</h1>
+                        <input required required type="number" name="customer_no" value="{{ old('customer_no') }}"
+                            class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
+                            placeholder="Masukkan nama customer_no">
+                        @error('customer_no')
+                            <div class="text-[12px] text-red-500 ">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class=" w-full lg:w-[30%]">
+                        <h1 class="font-bold">Address</h1>
+                        <input required required type="text" name="address" value="{{ old('address') }}"
+                            class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
+                            placeholder="Masukkan nama address">
+                        @error('address')
                             <div class="text-[12px] text-red-500 ">
                                 {{ $message }}
                             </div>

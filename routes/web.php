@@ -13,8 +13,11 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TransporterController;
 use App\Http\Controllers\VehicleTypeController;
 use App\Http\Controllers\CustomerTypeController;
+use App\Http\Controllers\EkspedisiController;
 use App\Http\Controllers\JenisSuratJalanController;
 use App\Http\Controllers\TransportController;
+use App\Http\Controllers\WarehouseController;
+use App\Http\Middleware\Warehouse;
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/', function () {
@@ -24,7 +27,8 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/login', [UserController::class, 'login'])->name('login');
 });
 
-
+Route::get('/ekspedisi/update/{encodeId}', [EkspedisiController::class, 'updateEkspedisi']);
+Route::get('/ekspedisi/update-status/{id}', [EkspedisiController::class, 'updateStatusEksepedisi']);
 
 Route::middleware(['kontrolPengguna'])->group(function () {
     Route::resource('user', UserController::class);
@@ -118,7 +122,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaction/{id}/edit-data', [TransactionController::class, 'viewEditTransaction']);
     Route::post('/transaction/edit-data', [TransactionController::class, 'editTransaction']);
     Route::get('/transaction/{id}/hapus-data', [TransactionController::class, 'deleteTransaction']);
-    Route::get('/transaction/{id}/detail', [TransactionController::class, 'detailTransaction']);
+    Route::get('/information-about-transaction/{id}/detail', [TransactionController::class, 'detailTransaction']);
 
 
     // transport
@@ -130,16 +134,31 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transport/{id}/edit', [TransportController::class, 'viewEditTransport']);
     Route::post('/transport/edit', [TransportController::class, 'EditTransport']);
     Route::get('/transport/{id}/delete', [TransportController::class, 'deleteTransport']);
+    Route::get('/information-about-transport/{id}/detail', [TransportController::class, 'detailTransport']);
+
+
+    // warehouse
+    Route::get('/warehouse/pending', [WarehouseController::class, 'index']);
+    Route::get('/warehouse/update-data/{id}/truck-in', [WarehouseController::class, 'updateTruckIn']);
+    Route::get('/warehouse/update-data/{id}/start-loading', [WarehouseController::class, 'updateStartLoading']);
+    Route::get('/warehouse/update-data/{id}/finish-loading', [WarehouseController::class, 'updateFinishLoading']);
+    Route::get('/warehouse/update-data/{id}/truck-out', [WarehouseController::class, 'updateTruckOut']);
+    Route::get('/warehouse/update-data/{id}/eta', [WarehouseController::class, 'updateETA']);
+    Route::get('/warehouse/kelola-laporan/{id}', [WarehouseController::class, 'viewTambahDataWarhouse']);
+    Route::get('/cetak-surat-jalan/{id}', [WarehouseController::class, 'cetakSuratJalan']);
+
+
+    // ekspedisi
+    Route::get('/ekspedisi', [EkspedisiController::class, 'index']);
+
 
     Route::get('/dashboard', function () {
         return view('admin.dashboard', [
             'title' => 'Dashboard',
         ]);
     })->name('dashboard');
-
-    Route::get('/warehouse', function () {
-        return view('sales.delivery-order', [
-            'title' => 'Delivery Order',
-        ]);
-    })->name('warehouse')->middleware('warehouse');
 });
+
+
+// API
+Route::post('/transport/update/izin', [TransportController::class, 'updateIzin']);

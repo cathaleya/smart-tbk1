@@ -20,14 +20,14 @@ return new class extends Migration
             $table->bigInteger('no_po');
             $table->bigInteger('ref_doc');
             $table->string('pelanggan');
+            $table->bigInteger('customer_no');
+            $table->string('address');
             $table->string('vessel_name');
             $table->foreignId('kode_material')->constrained('materials')->cascadeOnDelete();
             $table->bigInteger('qty');
             $table->foreignId('su')->constrained('item_units')->cascadeOnDelete();
             $table->foreignId('sloc')->constrained('slocs')->cascadeOnDelete();
             $table->foreignId('transport_id')->nullable()->constrained('transports');
-
-
             $table->string('kode_negara');
             $table->string('kota');
             $table->string('no_count')->nullable();
@@ -35,7 +35,9 @@ return new class extends Migration
             $table->bigInteger('berat_kg');
             $table->bigInteger('tt_kg');
             $table->bigInteger('tonase');
+            $table->enum('jenis_transaksi', ['lokal', 'ekspor']);
             $table->timestamp('tanggal_transaksi_dibuat');
+
             $table->timestamps();
         });
     }
