@@ -257,7 +257,7 @@ class TransactionController extends Controller
 
     public function detailTransaction(int $id)
     {
-        $transaction = Transaction::with(['material', 'su', 'slocrelation', 'tipecustomer', 'itemunit', 'transport.tipekendaraan', 'transport.jenissuratjalan', 'transport.incotrelation'])->where('id', $id)->first();
+        $transaction = Transaction::with(['material', 'su', 'slocrelation', 'tipecustomer', 'itemunit', 'transport.tipekendaraan', 'transport.jenissuratjalan', 'transport.incotrelation','transport.ekspedisi'])->where('id', $id)->first();
         if(!$transaction)
         {
             return redirect()->back()->with('notification','Data tidak ditemukan');
