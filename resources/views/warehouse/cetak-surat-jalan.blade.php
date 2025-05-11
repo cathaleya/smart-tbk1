@@ -1,9 +1,9 @@
 <x-admin-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
     <div class="w-full text-[12px] bg-white p-5 rounded-md font-inter">
-        <div class="flex justify-between pb-5 border-b mb-5">
-            <div class="flex gap-5">
-                <img src="{{ asset('img/logo/smart-logo.svg') }}" alt="" class="w-[150px]">
+        <div class="flex justify-between lg:flex-row flex-col pb-5 border-b mb-5">
+            <div class="flex lg:flex-row flex-col lg:mb-0 mb-5 gap-5">
+                <img src="{{ asset('img/logo/smart-logo.svg') }}" alt="" class="w-[150px] lg:block hidden">
                 <div class="">
                     <h1 class="text-[15px] font-bold">PT. SINAR MAS AGRO RESOURCES AND TECHNOLOGY TBK. (PT. SMART TBK)
                     </h1>
