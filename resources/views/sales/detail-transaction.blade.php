@@ -247,7 +247,7 @@
                 <div class="w-full flex flex-col lg:flex-row py-5 text-[12px] border-b">
                     <div class="w-full lg:w-[20%] mb-5 lg:mb-0 lg:pr-5 text-balance">
                         <h1 class="text-md font-bold">Data Ekspedisi</h1>
-                        <h2 class="text-[10px] text-gray-500">Berikut adalah detail dari data transport</h2>
+                        <h2 class="text-[10px] text-gray-500">Berikut adalah detail dari data Ekspedisi</h2>
                     </div>
                     <div class="w-full lg:w-[80%] mb-5 lg:mb-0 lg:pr-5 text-balance">
                         @if ($transaction->transport->ekspedisi->logs !== null)
