@@ -150,6 +150,9 @@ Route::middleware(['auth'])->group(function () {
 
     // ekspedisi
     Route::get('/ekspedisi', [EkspedisiController::class, 'index']);
+    Route::get('/ekspedisi/edit/{id}', [EkspedisiController::class, 'viewEditEkspedisi']);
+    Route::get('/ekspedisi/hapus/{id}', [EkspedisiController::class, 'hapusEkspedisi']);
+    Route::post('/ekspedisi/ubah-data', [EkspedisiController::class, 'editEkspedisi']);
 
 
     Route::get('/dashboard', function () {

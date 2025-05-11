@@ -87,4 +87,64 @@ class EkspedisiController extends Controller
 
         return redirect()->back()->with('notification', 'Berhasil mengupdate status menjadi ' . $ekspedisi->status->desc);
     }
+
+    public function viewEditEkspedisi(int $id)
+    {
+        $ekspedisi = Ekspedisi::find($id);
+        if (!$ekspedisi) {
+            return redirect()->back()->with('notification', 'Data tidak ditemukan');
+        }
+        $ekspedisiStatus = EkspedisiStatus::all();
+        return view('ekspedisi.edit-ekspedisi', [
+            'title' => 'Edit Ekspedisi',
+            'ekspedisi' => $ekspedisi,
+            'ekspedisistatus' => $ekspedisiStatus
+        ]);
+    }
+    public function hapusEkspedisi(int $id)
+    {
+        $ekspedisi = Ekspedisi::find($id);
+        if (!$ekspedisi) {
+            return redirect()->back()->with('notification', 'Data tidak ditemukan');
+        }
+
+        $ekspedisilog = EkspedisiLogs::where('id', $ekspedisi->id)->get();
+        if (count($ekspedisilog) > 0) {
+
+            foreach ($ekspedisilog as $log) {
+                $log->delete();
+            }
+        }
+
+        $ekspedisi->delete();
+        return redirect()->back()->with('notification', 'Data berhasil dihapus');
+    }
+
+    public function editEkspedisi(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'ekspedisi_status_id' => 'required'
+        ]);
+
+
+        $ekspedisi = Ekspedisi::find($request->id);
+        if (!$ekspedisi) {
+            return redirect()->back()->with('notification', 'Data tidak ditemukan');
+        }
+
+        $status = EkspedisiStatus::find($request->ekspedisi_status_id);
+
+        EkspedisiLogs::create([
+            'ekspedisi_id' => $ekspedisi->id,
+            'status' => $status->desc,
+            'tanggal' => now()->timezone('Asia/Jakarta')
+        ]);
+
+        $ekspedisi->update([
+            'ekspedisi_status_id' => $status->id
+        ]);
+
+        return redirect()->back()->with('notification', 'Berhasil mengubah data');
+    }
 }

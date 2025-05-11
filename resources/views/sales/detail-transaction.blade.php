@@ -257,7 +257,7 @@
                                         @if ($log->status == 'Diterima oleh Penerima')
                                             <div class="flex items-center pl-2 gap-2 mb-10">
                                                 <div class="">
-                                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                                    <div class="w-3 h-3 rounded-full {{ $log->status == 'Gagal dikirim' ? 'bg-red-500' : 'bg-green-500' }}"></div>
                                                 </div>
                                                 <div class="">
                                                     <h3 class="text-gray-500 text-[12px]">
@@ -267,7 +267,7 @@
                                             </div>
                                             <div class="flex items-center pl-2 gap-2 mb-10">
                                                 <div class="">
-                                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                                    <div class="w-3 h-3 rounded-full {{ $log->status == 'Gagal dikirim' ? 'bg-red-500' : 'bg-green-500' }}"></div>
                                                 </div>
                                                 <div class="">
                                                     <h3 class="text-gray-500 text-[12px]">
@@ -278,7 +278,7 @@
                                         @else
                                             <div class="flex items-center pl-2 gap-2 mb-10">
                                                 <div class="">
-                                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                                    <div class="w-3 h-3 rounded-full {{ $log->status == 'Gagal dikirim' ? 'bg-red-500' : 'bg-green-500' }}"></div>
                                                 </div>
                                                 <div class="">
                                                     <h3 class="text-gray-500 text-[12px]">
