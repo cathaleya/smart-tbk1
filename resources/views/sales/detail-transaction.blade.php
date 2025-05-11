@@ -268,7 +268,7 @@
                                                         <h1 class="font-bold ">{{ $log->status }} </h1>
                                                     </div>
                                                 </div>
-                                                <div class="flex items-center pl-2 gap-2 mb-10">
+                                                <div class="flex items-center pl-2 gap-2 ">
                                                     <div class="">
                                                         <div
                                                             class="w-3 h-3 rounded-full {{ $log->status == 'Gagal dikirim' ? 'bg-red-500' : 'bg-green-500' }}">
