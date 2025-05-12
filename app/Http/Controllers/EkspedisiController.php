@@ -38,6 +38,10 @@ class EkspedisiController extends Controller
         }
 
         $tujuanSelanjutnya = 'Pengiriman selesai';
+        if (!$transport->ekspedisi) {
+
+            return redirect()->back()->with('notification','Data tidak ditemukan');
+        }
         if ($transport->ekspedisi->ekspedisi_status_id !== 6) {
             if ($transport->ekspedisi->ekspedisi_status_id == 4) {
                 $ekspedisiStatus = EkspedisiStatus::where('id', $transport->ekspedisi->ekspedisi_status_id + 2)->first();
@@ -46,7 +50,6 @@ class EkspedisiController extends Controller
             $ekspedisiStatus = EkspedisiStatus::where('id', $transport->ekspedisi->ekspedisi_status_id + 1)->first();
             $tujuanSelanjutnya  = $ekspedisiStatus->desc;
         }
-
 
 
         return view('ekspedisi.update-ekspedisi', [
