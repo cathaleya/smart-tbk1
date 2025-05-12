@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ekspedisi;
+use App\Models\EkspedisiLogs;
 use Carbon\Carbon;
 use App\Models\Incot;
 use App\Models\Transport;
@@ -277,6 +279,18 @@ class TransportController extends Controller
 
         if (!$transport) {
             return response()->json(['status' => 'gagal'], 404);
+        }
+
+        if (!$check) {
+            $ekspedisi = Ekspedisi::where('transport_id', $transport->id)->first();
+            $ekspedisiLog = EkspedisiLogs::where('ekspedisi_id', $ekspedisi->id)->get();
+            if ($ekspedisiLog) {
+                foreach ($ekspedisiLog as $el) {
+                    $el->delete();
+                }
+            }
+
+            $ekspedisi->delete();
         }
 
         $transport->update([
