@@ -16,7 +16,7 @@ class VehicleTypeController extends Controller
       $query->where('name', $request->keyword);
     }
 
-    $vehicletypes = $query->get();
+    $vehicletypes = $query->paginate(20);
     return view('admin.lainnya.vehicle-type.all-vehicle-type', [
       'title' => 'Seluruh Tipe Kendaraan',
       'vehicletypes' => $vehicletypes

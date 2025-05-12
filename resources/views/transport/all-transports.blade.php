@@ -86,7 +86,8 @@
                                             {{ $transport->izin == true ? 'checked' : '' }}
                                             id="izin-muat-barang-{{ $transport->id }}"
                                             class="izin-muat-barang hidden peer">
-                                        <label for="izin-muat-barang-{{ $transport->id }}" onclick="return confirm('apakah anda yakin? jika anda check maka akan mengizinkan tim warehouse melakukan pendataan loading,jika di unchecked maka data tim warehouse pada laporan ini akan hilang')"
+                                        <label for="izin-muat-barang-{{ $transport->id }}"
+                                            onclick="return confirm('apakah anda yakin? jika anda check maka akan mengizinkan tim warehouse melakukan pendataan loading,jika di unchecked maka data tim warehouse pada laporan ini akan hilang')"
                                             class="absolute top-[2px] left-[2px] w-[20px] h-[20px] bg-white rounded-full shadow transition-all duration-300 transform peer-checked:translate-x-[16px] peer-checked:bg-blue-500 cursor-pointer">
                                         </label>
                                     </div>
@@ -109,6 +110,9 @@
 
                 </tbody>
             </table>
+            <div class="px-5 py-2">
+                {{ $transports->links() }}
+            </div>
         </div>
     </div>
 

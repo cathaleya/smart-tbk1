@@ -65,6 +65,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="px-5 py-2">
+                    {{ $users->links() }}
+                </div>
             </div>
         @endif
     </div>

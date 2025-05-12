@@ -73,6 +73,9 @@
 
                 </tbody>
             </table>
+            <div class="px-5 py-2">
+                {{ $transactions->links() }}
+            </div>
         </div>
     </div>
 

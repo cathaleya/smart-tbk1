@@ -17,7 +17,7 @@ class CustomerTypeController extends Controller
             $query->where('name', 'LIKE', '%' . $request->keyword . '%');
         }
 
-        $customertypes = $query->get();
+        $customertypes = $query->paginate(20);
         return view('admin.lainnya.customer-type.all-customer-type', [
             'title' => 'Seluruh Customer Type',
             'customertypes' => $customertypes

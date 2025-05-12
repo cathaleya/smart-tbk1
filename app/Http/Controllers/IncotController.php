@@ -18,7 +18,7 @@ class IncotController extends Controller
             $query->where('name', 'LIKE', '%' . $request->keyword . '%');
         }
 
-        $incots = $query->get();
+        $incots = $query->paginate(20);
         return view('admin.lainnya.incot.all-incot', [
             'title' => 'Seluruh Incot',
             'incots' => $incots

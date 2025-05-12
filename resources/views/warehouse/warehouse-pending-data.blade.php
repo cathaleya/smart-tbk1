@@ -67,6 +67,9 @@
 
                 </tbody>
             </table>
+            <div class="px-5 py-2">
+                {{ $transports->links() }}
+            </div>
         </div>
     </div>
 </x-admin-layout>

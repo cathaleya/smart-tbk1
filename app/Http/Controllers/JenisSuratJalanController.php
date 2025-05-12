@@ -15,7 +15,7 @@ class JenisSuratJalanController extends Controller
             $query->where('name', 'LIKE', '%' . $request->keyword . '%');
         }
 
-        $jenissuratjalans =  $query->get();
+        $jenissuratjalans =  $query->paginate(20);
         return view('admin.lainnya.jenis-surat-jalan.all-jenis-surat-jalan', [
             'title' => 'Seluruh satuan unit',
             'jenissuratjalans' => $jenissuratjalans

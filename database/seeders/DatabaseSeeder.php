@@ -49,6 +49,12 @@ class DatabaseSeeder extends Seeder
         Role::factory()->create([
             'name' => 'Sales',
         ]);
+        Role::factory()->create([
+            'name' => 'tim transport',
+        ]);
+        Role::factory()->create([
+            'name' => 'tim warehouse',
+        ]);
 
         RolePermission::factory()->create([
             'role_id' => 1,
@@ -71,7 +77,15 @@ class DatabaseSeeder extends Seeder
             'permission_id' => 3,
         ]);
         RolePermission::factory()->create([
+            'role_id' => 3,
+            'permission_id' => 3,
+        ]);
+        RolePermission::factory()->create([
             'role_id' => 1,
+            'permission_id' => 4,
+        ]);
+        RolePermission::factory()->create([
+            'role_id' => 4,
             'permission_id' => 4,
         ]);
 

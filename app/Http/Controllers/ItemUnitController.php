@@ -17,7 +17,7 @@ class ItemUnitController extends Controller
             $query->where('name', 'LIKE', '%' . $request->keyword . '%');
         }
 
-        $ItemUnits =  $query->get();
+        $ItemUnits =  $query->paginate(20);
         return view('admin.lainnya.su.all-su', [
             'title' => 'Seluruh satuan unit',
             'itemunits' => $ItemUnits

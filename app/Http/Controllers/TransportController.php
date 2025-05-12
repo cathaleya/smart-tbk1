@@ -26,7 +26,7 @@ class TransportController extends Controller
             $query->where('no_do', 'LIKE', '%' . $request->keyword . '%');
         }
 
-        $transactions =  $query->where('transport_id', null)->get();
+        $transactions =  $query->where('transport_id', null)->paginate(20);
         return view('transport.all-transaction-pending', [
             'title' => 'Seluruh Transport',
             'transactions' => $transactions
@@ -116,7 +116,7 @@ class TransportController extends Controller
                 $query->where('no_do', 'LIKE', '%' . $keyword . '%');
             });
         }
-        $transports = $query->get();
+        $transports = $query->paginate(20);
         return view('transport.all-transports  ', [
             'title' => 'Seluruh Transport',
             'transports' => $transports
@@ -260,7 +260,7 @@ class TransportController extends Controller
     {
         $transport = Transport::with(['transaction.material', 'transaction.su', 'transaction.slocrelation', 'transaction.tipecustomer', 'transaction.itemunit', 'tipekendaraan', 'jenissuratjalan', 'incotrelation', 'transporter'])->where('id', $id)->first();
         if (!$transport) {
-            return redirect()->back()->with('notification','Data tidak ditemukan');
+            return redirect()->back()->with('notification', 'Data tidak ditemukan');
         }
         return view('transport.detail-transport', [
             'title' => 'Transport Detail',
@@ -281,11 +281,11 @@ class TransportController extends Controller
 
         $transport->update([
             'izin' => $check,
-            'truck_in' => null ,
-            'start_loading' =>  null ,
-            'finish_loading' =>  null ,
-            'truck_out' =>  null ,
-            'eta' =>  null ,
+            'truck_in' => null,
+            'start_loading' =>  null,
+            'finish_loading' =>  null,
+            'truck_out' =>  null,
+            'eta' =>  null,
         ]);
 
         $message = $check ? 'berhasil memberikan izin' : 'berhasil menghapus izin';

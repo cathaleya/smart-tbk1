@@ -16,7 +16,7 @@ class SlocController extends Controller
             $query->where('name', 'LIKE', '%' . $request->keyword . '%');
         }
 
-        $slocs = $query->get();
+        $slocs = $query->paginate(20);
         return view('admin.lainnya.sloc.all-sloc', [
             'title' => 'Seluruh Sloc',
             'slocs' => $slocs

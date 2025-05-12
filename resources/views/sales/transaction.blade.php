@@ -166,6 +166,12 @@
                                                     <span class="w-2 h-2    bg-green-400 rounded-full"></span>
                                                     Delivered
                                                 </span>
+                                            @elseif ($td->transport->ekspedisi->ekspedisi_status_id == 7)
+                                                <span
+                                                    class="inline-flex items-center gap-1 px-3 py-1  bg-gray-100 rounded-full text-gray-600">
+                                                    <span class="w-2 h-2    bg-red-400 rounded-full"></span>
+                                                    Failed
+                                                </span>
                                             @else
                                                 <span
                                                     class="inline-flex items-center gap-1 px-3 py-1  bg-gray-100 rounded-full text-gray-600">
@@ -213,6 +219,9 @@
                     @endif
                 </tbody>
             </table>
+            <div class="px-5 py-2">
+                {{ $transactiondata->links() }}
+            </div>
         </div>
     </div>
 </x-admin-layout>

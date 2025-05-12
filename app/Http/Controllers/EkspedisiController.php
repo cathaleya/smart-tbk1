@@ -95,10 +95,13 @@ class EkspedisiController extends Controller
             return redirect()->back()->with('notification', 'Data tidak ditemukan');
         }
         $ekspedisiStatus = EkspedisiStatus::all();
+
+        $ekspedisiLog = EkspedisiLogs::where('ekspedisi_id', $ekspedisi->id)->get();
         return view('ekspedisi.edit-ekspedisi', [
             'title' => 'Edit Ekspedisi',
             'ekspedisi' => $ekspedisi,
-            'ekspedisistatus' => $ekspedisiStatus
+            'ekspedisistatus' => $ekspedisiStatus,
+            'ekspedisilogs'  => $ekspedisiLog
         ]);
     }
     public function hapusEkspedisi(int $id)
@@ -146,5 +149,11 @@ class EkspedisiController extends Controller
         ]);
 
         return redirect()->back()->with('notification', 'Berhasil mengubah data');
+    }
+
+    public function hapusLog(int $id)
+    {
+        EkspedisiLogs::destroy($id);
+        return redirect()->back()->with('notification', 'Berhasil menghapus log ekspedisi');
     }
 }

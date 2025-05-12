@@ -73,15 +73,15 @@
                                     <a href="/ekspedisi/edit/{{ $ekspedisi->id }}">
                                         <button class="py-2 px-3 bg-blue-500 text-white rounded-md">Edit</button>
                                     </a>
-                                    <a href="" onclick="return confirm('Apakah anda yakin ingin menghapus?')">
-                                        <button class="py-2 px-3 bg-red-500 text-white rounded-md">Hapus</button>
-                                    </a>
                                 </td>
                             </tr>
                         </tbody>
                     @endforeach
 
                 </table>
+                <div class="px-5 py-2">
+                    {{ $ekspedisis->links() }}
+                </div>
             </div>
 
         @endif

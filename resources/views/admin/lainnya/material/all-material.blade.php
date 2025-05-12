@@ -36,6 +36,9 @@
 
                 </tbody>
             </table>
+            <div class="px-5 py-2">
+                {{ $materials->links() }}
+            </div>
         </div>
     </div>
 </x-admin-layout>

@@ -24,7 +24,7 @@ class Operasional extends Controller
         if ($request->keyword) {
             $query->where('material_number', 'LIKE', '%' . $request->keyword . '%');
         }
-        $materials = $query->get();
+        $materials = $query->paginate(20);
 
         return view('admin.lainnya.material.all-material', [
             'title' => 'Data Material',

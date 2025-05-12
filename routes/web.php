@@ -13,6 +13,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TransporterController;
 use App\Http\Controllers\VehicleTypeController;
 use App\Http\Controllers\CustomerTypeController;
+use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\EkspedisiController;
 use App\Http\Controllers\JenisSuratJalanController;
 use App\Http\Controllers\TransportController;
@@ -30,16 +31,23 @@ Route::middleware(['guest'])->group(function () {
 Route::get('/ekspedisi/update/{encodeId}', [EkspedisiController::class, 'updateEkspedisi']);
 Route::get('/ekspedisi/update-status/{id}', [EkspedisiController::class, 'updateStatusEksepedisi']);
 
-Route::middleware(['kontrolPengguna'])->group(function () {
+Route::middleware(['isAdmin'])->group(function () {
     Route::resource('user', UserController::class);
+
+
+
+    // ekspedisi
+    Route::get('/ekspedisi', [EkspedisiController::class, 'index']);
+    Route::get('/ekspedisi/edit/{id}', [EkspedisiController::class, 'viewEditEkspedisi']);
+    Route::get('/ekspedisi/hapus/{id}', [EkspedisiController::class, 'hapusEkspedisi']);
+    Route::post('/ekspedisi/ubah-data', [EkspedisiController::class, 'editEkspedisi']);
+    Route::get('/ekspedisi/hapus-data-log/{id}', [EkspedisiController::class, 'hapusLog']);
 });
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
     Route::get('/update-profile/{user}', [UserController::class, 'updateProfileView'])->name('update-profile');
     Route::post('/update-profile', [UserController::class, 'updateProfile'])->name('update-profile');
-
-
     Route::get('/lainnya', [Operasional::class, 'index'])->name('lainnya');
 
     // MATERIAL ROUTE
@@ -113,8 +121,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lainnya/customer-type/{id}/edit', [CustomerTypeController::class, 'viewEditct']);
     Route::post('/lainnya/customer-type/edit', [CustomerTypeController::class, 'editct']);
     Route::get('/lainnya/customer-type/{id}/hapus', [CustomerTypeController::class, 'hapusct']);
+    
+    Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
+});
 
 
+Route::middleware(['TransactionMiddleware'])->group(function () {
     // transaction
     Route::get('/transaction', [TransactionController::class, 'index']);
     Route::get('/transaction/tambah-data', [TransactionController::class, 'viewAddTransaction']);
@@ -123,20 +135,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaction/edit-data', [TransactionController::class, 'editTransaction']);
     Route::get('/transaction/{id}/hapus-data', [TransactionController::class, 'deleteTransaction']);
     Route::get('/information-about-transaction/{id}/detail', [TransactionController::class, 'detailTransaction']);
+});
 
-
-    // transport
-
-    Route::get('/transport', [TransportController::class, 'index']);
-    Route::get('/transport/tambah-data', [TransportController::class, 'addTransportView']);
-    Route::post('/transport/tambah-data', [TransportController::class, 'addTransport']);
-    Route::get('/transport/data', [TransportController::class, 'allTransport']);
-    Route::get('/transport/{id}/edit', [TransportController::class, 'viewEditTransport']);
-    Route::post('/transport/edit', [TransportController::class, 'EditTransport']);
-    Route::get('/transport/{id}/delete', [TransportController::class, 'deleteTransport']);
-    Route::get('/information-about-transport/{id}/detail', [TransportController::class, 'detailTransport']);
-
-
+Route::middleware(['warehouse'])->group(function () {
     // warehouse
     Route::get('/warehouse/pending', [WarehouseController::class, 'index']);
     Route::get('/warehouse/update-data/{id}/truck-in', [WarehouseController::class, 'updateTruckIn']);
@@ -146,20 +147,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/warehouse/update-data/{id}/eta', [WarehouseController::class, 'updateETA']);
     Route::get('/warehouse/kelola-laporan/{id}', [WarehouseController::class, 'viewTambahDataWarhouse']);
     Route::get('/cetak-surat-jalan/{id}', [WarehouseController::class, 'cetakSuratJalan']);
+});
 
-
-    // ekspedisi
-    Route::get('/ekspedisi', [EkspedisiController::class, 'index']);
-    Route::get('/ekspedisi/edit/{id}', [EkspedisiController::class, 'viewEditEkspedisi']);
-    Route::get('/ekspedisi/hapus/{id}', [EkspedisiController::class, 'hapusEkspedisi']);
-    Route::post('/ekspedisi/ubah-data', [EkspedisiController::class, 'editEkspedisi']);
-
-
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard', [
-            'title' => 'Dashboard',
-        ]);
-    })->name('dashboard');
+Route::middleware(['transport'])->group(function () {
+    // transport
+    Route::get('/transport', [TransportController::class, 'index']);
+    Route::get('/transport/tambah-data', [TransportController::class, 'addTransportView']);
+    Route::post('/transport/tambah-data', [TransportController::class, 'addTransport']);
+    Route::get('/transport/data', [TransportController::class, 'allTransport']);
+    Route::get('/transport/{id}/edit', [TransportController::class, 'viewEditTransport']);
+    Route::post('/transport/edit', [TransportController::class, 'EditTransport']);
+    Route::get('/transport/{id}/delete', [TransportController::class, 'deleteTransport']);
+    Route::get('/information-about-transport/{id}/detail', [TransportController::class, 'detailTransport']);
 });
 
 

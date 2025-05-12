@@ -18,7 +18,7 @@
                     <span>Dashboard</span>
                 </span>
             </a>
-            @can('mengontrolPengguna')
+            @can('isAdmin')
                 <a href="{{ route('user.index') }}"
                     class="{{ Request::is('user') ? 'bg-red-500 text-white ' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5 justify-start pl-2 rounded-lg    ">
                     <span class="flex gap-2 items-center ">
@@ -33,7 +33,7 @@
                     </span>
                 </a>
                 <a href="/ekspedisi"
-                    class="{{ Request::is('ekspedisi/*') ? 'bg-red-500 text-white ' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5 justify-start pl-2 rounded-lg    ">
+                    class="{{ Request::is('ekspedisi*') ? 'bg-red-500 text-white ' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5 justify-start pl-2 rounded-lg    ">
                     <span class="flex gap-2 items-center ">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -49,7 +49,7 @@
                     </span>
                 </a>
             @endcan
-            @can('deliveryOrder')
+            @can('sales')
                 <a href="/transaction"
                     class="{{ Request::is('transaction*') ? 'bg-red-500 text-white' : 'text-gray-500 hover:bg-gray-100' }} flex py-3 px-5 justify-start pl-2 rounded-lg  ">
                     <span class="flex gap-2 items-center">

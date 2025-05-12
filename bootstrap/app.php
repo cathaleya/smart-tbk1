@@ -16,7 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'auth' => Authentication::class,
             'isAdmin' => App\Http\Middleware\isAdmin::class,
             'kontrolPengguna' => App\Http\Middleware\KontrolPengguna::class,
-            'deliveryOrder' => App\Http\Middleware\DeliveryOrder::class,
+            'TransactionMiddleware' => App\Http\Middleware\TransactionMiddleware::class,
             'warehouse' => App\Http\Middleware\Warehouse::class,
             'transport' => App\Http\Middleware\Transport::class,
         ]);

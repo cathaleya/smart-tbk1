@@ -37,6 +37,9 @@
 
                 </tbody>
             </table>
+            <div class="px-5 py-2">
+                {{ $vehicletypes->links() }}
+            </div>
         </div>
     </div>
 </x-admin-layout>

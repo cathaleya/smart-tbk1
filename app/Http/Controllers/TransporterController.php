@@ -17,7 +17,7 @@ class TransporterController extends Controller
             $query->where('name', 'LIKE', '%' . $request->keyword . '%');
         }
 
-        $transporters = $query->get();
+        $transporters = $query->paginate(20);
 
         return view('admin.lainnya.transporter.all-transporter', [
             'title' => 'Transporter',

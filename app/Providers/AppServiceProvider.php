@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
             $allowed = in_array($user->role_id, $roleAllowed);
             return $allowed;
         });
-        Gate::define('deliveryOrder', function ($user) {
+        Gate::define('sales', function ($user) {
             $roleAllowed =  RolePermission::where('permission_id', 2)->pluck('role_id')->toArray();
             $allowed = in_array($user->role_id, $roleAllowed);
             return $allowed;
