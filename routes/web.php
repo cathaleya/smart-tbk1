@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\Transport;
 use App\Models\Transporter;
 use App\Models\JenisSuratJalan;
+use App\Http\Middleware\Warehouse;
+use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Operasional;
 use App\Http\Controllers\Transaction;
 use Illuminate\Support\Facades\Route;
@@ -9,16 +12,14 @@ use App\Http\Controllers\SlocController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\IncotController;
 use App\Http\Controllers\ItemUnitController;
+use App\Http\Controllers\EkspedisiController;
+use App\Http\Controllers\TransportController;
+use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TransporterController;
 use App\Http\Controllers\VehicleTypeController;
 use App\Http\Controllers\CustomerTypeController;
-use App\Http\Controllers\Dashboard;
-use App\Http\Controllers\EkspedisiController;
 use App\Http\Controllers\JenisSuratJalanController;
-use App\Http\Controllers\TransportController;
-use App\Http\Controllers\WarehouseController;
-use App\Http\Middleware\Warehouse;
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/', function () {
@@ -121,7 +122,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lainnya/customer-type/{id}/edit', [CustomerTypeController::class, 'viewEditct']);
     Route::post('/lainnya/customer-type/edit', [CustomerTypeController::class, 'editct']);
     Route::get('/lainnya/customer-type/{id}/hapus', [CustomerTypeController::class, 'hapusct']);
-    
+
     Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
 });
 
@@ -144,7 +145,7 @@ Route::middleware(['warehouse'])->group(function () {
     Route::get('/warehouse/update-data/{id}/start-loading', [WarehouseController::class, 'updateStartLoading']);
     Route::get('/warehouse/update-data/{id}/finish-loading', [WarehouseController::class, 'updateFinishLoading']);
     Route::get('/warehouse/update-data/{id}/truck-out', [WarehouseController::class, 'updateTruckOut']);
-    Route::get('/warehouse/update-data/{id}/eta', [WarehouseController::class, 'updateETA']);
+    Route::post('/warehouse/update-data/eta', [WarehouseController::class, 'updateETA']);
     Route::get('/warehouse/kelola-laporan/{id}', [WarehouseController::class, 'viewTambahDataWarhouse']);
     Route::get('/cetak-surat-jalan/{id}', [WarehouseController::class, 'cetakSuratJalan']);
 });
@@ -164,3 +165,11 @@ Route::middleware(['transport'])->group(function () {
 
 // API
 Route::post('/transport/update/izin', [TransportController::class, 'updateIzin']);
+
+
+// Route::get('/maintenance-email', function () {
+//     $transport = Transport::first();
+//     return view('email.order-dikirim', [
+//         'transport' => $transport
+//     ]);
+// });

@@ -173,12 +173,21 @@
                                     @endif
                                 </td>
                                 <td class="border  p-2">
-                                    <div class="w-full">
-                                        <a href="/warehouse/update-data/{{ $transport->id }}/eta">
-                                            <button {{ $transport->eta !== null ? 'disabled' : '' }}
-                                                class="py-1 px-5 {{ $transport->truck_out == null ? 'hidden' : '' }}  {{ $transport->eta !== null ? 'bg-gray-200 text-gray-500' : 'bg-blue-500 text-white' }}   rounded-md">Finish</button>
-                                        </a>
-                                    </div>
+                                    @if ($transport->truck_out !== null)
+                                        @if ($transport->eta)
+                                            <button class="py-1 px-5 bg-gray-200 text-gray-500 rounded-md">Finish</button>
+                                        @else
+                                            <div class="">
+                                                <form action="/warehouse/update-data/eta" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $transport->id }}">
+                                                    <input type="date" class="py-2 px-3" name="eta" required>
+                                                    <button
+                                                        class="py-1 px-5 bg-blue-500 text-white rounded-md">Finish</button>
+                                                </form>
+                                            </div>
+                                        @endif
+                                    @endif
                                 </td>
                             </tr>
                         </table>

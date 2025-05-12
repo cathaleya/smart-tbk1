@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderDikirim;
+use App\Models\User;
 use App\Models\Ekspedisi;
 use App\Models\Transport;
 use App\Models\Warehouse;
@@ -9,6 +11,7 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\EkspedisiLogs;
 use App\Models\EkspedisiStatus;
+use Illuminate\Support\Facades\Mail;
 
 class WarehouseController extends Controller
 {
@@ -113,9 +116,14 @@ class WarehouseController extends Controller
 
         return redirect()->back()->with('notification', 'Berhasil update data truck out ');
     }
-    public function updateETA(int $id)
+    public function updateETA(Request $request)
     {
-        $transport = Transport::find($id);
+        $request->validate([
+            'id' => 'required',
+            'eta' => 'required'
+        ]);
+
+        $transport = Transport::find($request->id);
         if (!$transport) {
             return redirect()->back()->with('notification', 'Data tidak ditemukan');
         }
@@ -127,8 +135,19 @@ class WarehouseController extends Controller
 
 
         $transport->update([
-            'eta' => now()->timezone('Asia/Jakarta')
+            'eta' => $request->eta
         ]);
+
+        $sales = User::where('role_id', 2)->get();
+
+        if ($sales !== null) {
+            foreach ($sales as $s) {
+                Mail::to($s->email)->send(new OrderDikirim([
+                    'user' => $s,
+                    'transport' => $transport
+                ]));
+            }
+        }
 
 
         $ekspedisi = Ekspedisi::create([
