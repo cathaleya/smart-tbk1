@@ -127,6 +127,10 @@ class WarehouseController extends Controller
 
         if (count($ekspedisiLama) > 0) {
             foreach ($ekspedisiLama as $el) {
+                $logdatas = EkspedisiLogs::where('ekspedisi_id', $el->id)->get();
+                foreach ($logdatas as $ls) {
+                    $ls->delete();
+                }
                 $el->delete();
             }
         }
