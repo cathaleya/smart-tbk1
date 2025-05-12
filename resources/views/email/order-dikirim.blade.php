@@ -1,84 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Orderan Dikirim</title>
-    @vite('resources/css/app.css')
 </head>
+<body style="margin:0; padding:0; font-family: Arial, sans-serif; background-color:#e5e7eb;">
 
-<body>
-    <div class="w-full flex justify-center h-screen items-center bg-gray-200 font-inter lg:text-sm text-[10px]">
-        <div class="lg:min-w-[50%] min-w-full p-5 rounded-md  bg-white">
-            <div class="flex lg:flex-row flex-col  mb-5 gap-5">
-                <img src="{{ asset('img/logo/smart-logo.svg') }}" alt="" class="w-[150px] lg:block hidden">
-                <div class="">
-                    <h1 class="text-[15px] font-bold">PT. SINAR MAS AGRO RESOURCES AND TECHNOLOGY TBK. (PT. SMART TBK)
-                    </h1>
-                    <h2 class="text-gray-500">Kompleks Pergudangan Marunda Center Blok D No. 1</h2>
-                    <h2 class="text-gray-500">Bekasi 17211</h2>
+    <div style="width: 100%; display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <div style="max-width: 600px; width: 100%; padding: 20px; border-radius: 8px; background-color: white;">
+
+            <div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 20px;">
+                <img src="{{ asset('img/logo/smart-logo.svg') }}" alt="Logo" style="width:150px; display:block;">
+                <div>
+                    <h1 style="font-size: 15px; font-weight: bold;">PT. SINAR MAS AGRO RESOURCES AND TECHNOLOGY TBK. (PT. SMART TBK)</h1>
+                    <h2 style="color: #6b7280;">Kompleks Pergudangan Marunda Center Blok D No. 1</h2>
+                    <h2 style="color: #6b7280;">Bekasi 17211</h2>
                 </div>
             </div>
-            <div class="mb-5">
-                <h1 class="text-xl font-bold">Hi {{ $user->name }}</h1>
-                <h2 class="text-sm">ada pengiriman baru ni</h2>
+
+            <div style="margin-bottom: 20px;">
+                <h1 style="font-size: 20px; font-weight: bold;">Hi {{ $user->name }}</h1>
+                <h2 style="font-size: 14px;">Ada pengiriman baru nih!</h2>
             </div>
 
-            <table class="w-full mb-5">
-                <tr class="border-y border-gray-200">
-                    <td class="whitespace-nowrap lg:p-5">Ekspedisi</td>
-                    <td class="whitespace-nowrap lg:p-5">No-Kendaraan</td>
-                    <td class="whitespace-nowrap lg:p-5">ETA</td>
+            <table style="width: 100%; margin-bottom: 20px; border-collapse: collapse;">
+                <tr style="border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb;">
+                    <td style="padding: 10px;">Ekspedisi</td>
+                    <td style="padding: 10px;">No-Kendaraan</td>
+                    <td style="padding: 10px;">ETA</td>
                 </tr>
-                <tr class="border-y border-gray-200">
-                    <td class="whitespace-nowrap lg:p-5">{{ $transport->transporter->name }}</td>
-                    <td class="whitespace-nowrap lg:p-5">{{ $transport->vehicle_no }}</td>
-                    <td class="whitespace-nowrap lg:p-5">
-                        {{ \Carbon\Carbon::parse($transport->eta)->locale('id')->isoFormat('LL') }}</td>
+                <tr style="border-bottom: 1px solid #e5e7eb;">
+                    <td style="padding: 10px;">{{ $transport->transporter->name }}</td>
+                    <td style="padding: 10px;">{{ $transport->vehicle_no }}</td>
+                    <td style="padding: 10px;">
+                        {{ \Carbon\Carbon::parse($transport->eta)->locale('id')->isoFormat('LL') }}
+                    </td>
                 </tr>
             </table>
 
-            <table class="w-full mb-5">
-                <tr class="border-y border-gray-200">
-                    <td class=" whitespace-nowrap lg:p-5">No DO</td>
-                    <td class=" whitespace-nowrap lg:p-5">Material number</td>
-                    <td class=" whitespace-nowrap lg:p-5">Material desc</td>
+            <table style="width: 100%; margin-bottom: 20px; border-collapse: collapse;">
+                <tr style="border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb;">
+                    <td style="padding: 10px;">No DO</td>
+                    <td style="padding: 10px;">Material number</td>
+                    <td style="padding: 10px;">Material desc</td>
                 </tr>
                 @if ($transport)
-                    <tr>
-                        <td class=" whitespace-nowrap lg:p-5">
-                            <div class="">
-                                @foreach ($transport->transaction as $ts)
-                                    <li class="list-none ">{{ $ts->no_do }}</li>
-                                @endforeach
-                            </div>
-                        </td>
-                        <td class=" whitespace-nowrap lg:p-5">
-                            <div class="">
-                                @foreach ($transport->transaction as $ts)
-                                    <li class="list-none ">{{ $ts->material->material_number }}</li>
-                                @endforeach
-                            </div>
-                        </td>
-                        <td class=" whitespace-nowrap lg:p-5">
-                            <div class="">
-                                @foreach ($transport->transaction as $ts)
-                                    <li class="list-none ">{{ $ts->material->description }}</li>
-                                @endforeach
-                            </div>
-                        </td>
-                    </tr>
+                <tr style="border-bottom: 1px solid #e5e7eb;">
+                    <td style="padding: 10px;">
+                        <ul style="margin: 0; padding-left: 15px;">
+                            @foreach ($transport->transaction as $ts)
+                                <li>{{ $ts->no_do }}</li>
+                            @endforeach
+                        </ul>
+                    </td>
+                    <td style="padding: 10px;">
+                        <ul style="margin: 0; padding-left: 15px;">
+                            @foreach ($transport->transaction as $ts)
+                                <li>{{ $ts->material->material_number }}</li>
+                            @endforeach
+                        </ul>
+                    </td>
+                    <td style="padding: 10px;">
+                        <ul style="margin: 0; padding-left: 15px;">
+                            @foreach ($transport->transaction as $ts)
+                                <li>{{ $ts->material->description }}</li>
+                            @endforeach
+                        </ul>
+                    </td>
+                </tr>
                 @endif
             </table>
 
-
-            <div class="">
-                <h1>Sekian informasi yang kami sampaikan yaaa</h1>
+            <div>
+                <p>Sekian informasi yang kami sampaikan yaaa.</p>
             </div>
         </div>
     </div>
 </body>
-
 </html>
