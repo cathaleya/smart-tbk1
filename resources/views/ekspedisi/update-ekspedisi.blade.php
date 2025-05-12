@@ -50,9 +50,10 @@
                         </td>
                     </tr>
                     <tr>
-                      <td colspan="2" class="p-3 text-center">
-                        <a href="/ekspedisi/update-status/{{ $transport->id }}"><Button class="py-2 px-3 bg-red-500 text-white rounded-md">Selesai</Button></a>
-                      </td>
+                        <td colspan="2" class="p-3 text-center">
+                            <a href="/ekspedisi/update-status/{{ $transport->id }}"><Button
+                                    class="py-2 px-3 bg-red-500 text-white rounded-md">Selesai</Button></a>
+                        </td>
                     </tr>
                 </table>
             </div>

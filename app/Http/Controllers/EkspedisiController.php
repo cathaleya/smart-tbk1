@@ -70,8 +70,13 @@ class EkspedisiController extends Controller
             return redirect('/')->with('notification', 'Pengiriman telah selesai');
         }
 
-
-        $status = $ekspedisi->ekspedisi_status_id + 1;
+        $status = 0;
+        if ($ekspedisi->ekspedisi_status_id !== 4) {
+            $status = $ekspedisi->ekspedisi_status_id + 1;
+        }
+        if ($ekspedisi->ekspedisi_status_id == 4) {
+             $status = $ekspedisi->ekspedisi_status_id + 2;
+        }
 
         $ekspedisi->update([
             'ekspedisi_status_id' => $status
@@ -154,6 +159,6 @@ class EkspedisiController extends Controller
     public function hapusLog(int $id)
     {
         EkspedisiLogs::destroy($id);
-        return redirect()->back()->with('notification', 'Berhasil menghapus log ekspedisi');
+        return redirect()->back()->with('notification', 'Berhasil menghapus log transaksi');
     }
 }
