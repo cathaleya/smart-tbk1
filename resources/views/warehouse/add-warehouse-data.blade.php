@@ -181,7 +181,7 @@
                                                 <form action="/warehouse/update-data/eta" method="post">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{ $transport->id }}">
-                                                    <input type="date" class="py-2 px-3" name="eta" required>
+                                                    <input type="datetime-local" class="py-2 px-3" name="eta" required>
                                                     <button
                                                         class="py-1 px-5 bg-blue-500 text-white rounded-md">Finish</button>
                                                 </form>
