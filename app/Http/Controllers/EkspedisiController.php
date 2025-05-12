@@ -39,6 +39,10 @@ class EkspedisiController extends Controller
 
         $tujuanSelanjutnya = 'Pengiriman selesai';
         if ($transport->ekspedisi->ekspedisi_status_id !== 6) {
+            if ($transport->ekspedisi->ekspedisi_status_id == 4) {
+                $ekspedisiStatus = EkspedisiStatus::where('id', $transport->ekspedisi->ekspedisi_status_id + 2)->first();
+                $tujuanSelanjutnya  = $ekspedisiStatus->desc;
+            }
             $ekspedisiStatus = EkspedisiStatus::where('id', $transport->ekspedisi->ekspedisi_status_id + 1)->first();
             $tujuanSelanjutnya  = $ekspedisiStatus->desc;
         }
@@ -75,7 +79,7 @@ class EkspedisiController extends Controller
             $status = $ekspedisi->ekspedisi_status_id + 1;
         }
         if ($ekspedisi->ekspedisi_status_id == 4) {
-             $status = $ekspedisi->ekspedisi_status_id + 2;
+            $status = $ekspedisi->ekspedisi_status_id + 2;
         }
 
         $ekspedisi->update([
