@@ -281,17 +281,16 @@ class TransportController extends Controller
             return response()->json(['status' => 'gagal'], 404);
         }
 
-        if (!$check) {
-            $ekspedisi = Ekspedisi::where('transport_id', $transport->id)->first();
+        $ekspedisi = Ekspedisi::where('transport_id', $transport->id)->first();
+        if ($ekspedisi) {
             $ekspedisiLog = EkspedisiLogs::where('ekspedisi_id', $ekspedisi->id)->get();
             if ($ekspedisiLog) {
                 foreach ($ekspedisiLog as $el) {
                     $el->delete();
                 }
             }
-
-            $ekspedisi->delete();
         }
+        $ekspedisi->delete();
 
         $transport->update([
             'izin' => $check,
