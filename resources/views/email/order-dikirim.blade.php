@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Orderan Dikirim</title>
 </head>
+
 <body style="margin:0; padding:0; font-family: Arial, sans-serif; background-color:#e5e7eb;">
 
     <div style="width: 100%; display: flex; justify-content: center; align-items: center; height: 100vh;">
@@ -12,7 +14,8 @@
             <div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 20px;">
                 <img src="{{ asset('img/logo/smart-logo.svg') }}" alt="Logo" style="width:150px; display:block;">
                 <div>
-                    <h1 style="font-size: 15px; font-weight: bold;">PT. SINAR MAS AGRO RESOURCES AND TECHNOLOGY TBK. (PT. SMART TBK)</h1>
+                    <h1 style="font-size: 15px; font-weight: bold;">PT. SINAR MAS AGRO RESOURCES AND TECHNOLOGY TBK. (PT.
+                        SMART TBK)</h1>
                     <h2 style="color: #6b7280;">Kompleks Pergudangan Marunda Center Blok D No. 1</h2>
                     <h2 style="color: #6b7280;">Bekasi 17211</h2>
                 </div>
@@ -45,29 +48,29 @@
                     <td style="padding: 10px;">Material desc</td>
                 </tr>
                 @if ($transport)
-                <tr style="border-bottom: 1px solid #e5e7eb;">
-                    <td style="padding: 10px;">
-                        <ul style="margin: 0; padding-left: 15px;">
-                            @foreach ($transport->transaction as $ts)
-                                <li>{{ $ts->no_do }}</li>
-                            @endforeach
-                        </ul>
-                    </td>
-                    <td style="padding: 10px;">
-                        <ul style="margin: 0; padding-left: 15px;">
-                            @foreach ($transport->transaction as $ts)
-                                <li>{{ $ts->material->material_number }}</li>
-                            @endforeach
-                        </ul>
-                    </td>
-                    <td style="padding: 10px;">
-                        <ul style="margin: 0; padding-left: 15px;">
-                            @foreach ($transport->transaction as $ts)
-                                <li>{{ $ts->material->description }}</li>
-                            @endforeach
-                        </ul>
-                    </td>
-                </tr>
+                    <tr style="border-bottom: 1px solid #e5e7eb;">
+                        <td style="padding: 10px;">
+                            <ul style="margin: 0; padding-left: 15px;">
+                                @foreach ($transport->transaction as $ts)
+                                    <li>{{ $ts->no_do }}</li>
+                                @endforeach
+                            </ul>
+                        </td>
+                        <td style="padding: 10px;">
+                            <ul style="margin: 0; padding-left: 15px;">
+                                @foreach ($transport->transaction as $ts)
+                                    <li>{{ $ts->material->material_number }}</li>
+                                @endforeach
+                            </ul>
+                        </td>
+                        <td style="padding: 10px;">
+                            <ul style="margin: 0; padding-left: 15px;">
+                                @foreach ($transport->transaction as $ts)
+                                    <li>{{ $ts->material->description }}</li>
+                                @endforeach
+                            </ul>
+                        </td>
+                    </tr>
                 @endif
             </table>
 
@@ -77,4 +80,5 @@
         </div>
     </div>
 </body>
+
 </html>

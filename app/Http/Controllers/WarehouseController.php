@@ -123,6 +123,14 @@ class WarehouseController extends Controller
             'eta' => 'required'
         ]);
 
+        $ekspedisiLama = Ekspedisi::where('transport_id', $request->id)->get();
+
+        if (count($ekspedisiLama) > 0) {
+            foreach ($ekspedisiLama as $el) {
+                $el->delete();
+            }
+        }
+
         $transport = Transport::find($request->id);
         if (!$transport) {
             return redirect()->back()->with('notification', 'Data tidak ditemukan');
