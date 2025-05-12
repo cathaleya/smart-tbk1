@@ -289,8 +289,8 @@ class TransportController extends Controller
                     $el->delete();
                 }
             }
+            $ekspedisi->delete();
         }
-        $ekspedisi->delete();
 
         $transport->update([
             'izin' => $check,
