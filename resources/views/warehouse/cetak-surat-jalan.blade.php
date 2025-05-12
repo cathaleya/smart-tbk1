@@ -101,5 +101,32 @@
 
             </table>
         </div>
+        <div class="flex justify-between px-5">
+            <table class="w-full text-center">
+                <tr>
+                    <td>
+                        <h1>Penerima</h1>
+                    </td>
+                    <td>
+                        <h1>Ekspedisi</h1>
+                    </td>
+                    <td>
+                        <h2>{{ \Carbon\Carbon::parse(now())->setTimeZone('Asia/jakarta')->locale('id')->isoFormat('dddd,LL') }}
+                        <h1>Hormat Kami</h1>
+                        </h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="py-10"></td>
+                    <td class="py-10"></td>
+                    <td class="py-10"></td>
+                </tr>
+                <tr>
+                    <td>(Nama Lengkap)</td>
+                    <td>(Nama Lengkap)</td>
+                    <td>(Nama Lengkap)</td>
+                </tr>
+            </table>
+        </div>
     </div>
 </x-admin-layout>
