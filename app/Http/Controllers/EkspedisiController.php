@@ -74,8 +74,6 @@ class EkspedisiController extends Controller
         }
 
         if ($ekspedisi->ekspedisi_status_id == 6) {
-
-
             return redirect('/')->with('notification', 'Pengiriman telah selesai');
         }
 

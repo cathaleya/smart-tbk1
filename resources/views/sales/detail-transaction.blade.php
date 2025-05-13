@@ -50,10 +50,7 @@
                                 <td class="border  p-2">Pelanggan</td>
                                 <td class="border  p-2">{{ $transaction->pelanggan }}</td>
                             </tr>
-                            <tr class="border p-2">
-                                <td class="border  p-2">Vessel name</td>
-                                <td class="border  p-2">{{ $transaction->vessel_name }}</td>
-                            </tr>
+
                             <tr class="border p-2">
                                 <td class="border  p-2">Kode Material</td>
                                 <td class="border  p-2">{{ $transaction->material->material_number }}</td>
@@ -128,6 +125,10 @@
                                 <tr class="border p-2">
                                     <td class="border  p-2">Transporter</td>
                                     <td class="border  p-2">{{ $transaction->transport->transporter->name }}</td>
+                                </tr>
+                                <tr class="border p-2">
+                                    <td class="border  p-2">Vessel name</td>
+                                    <td class="border  p-2">{{ $transaction->transport->vessel_name }}</td>
                                 </tr>
                                 <tr class="border p-2">
                                     <td class="border  p-2">Tipe kendaraan (Vehicle Type)</td>
@@ -255,7 +256,6 @@
                                 <div class="w-full flex justify-center items-center">
                                     <div class="border-l-4 border-gray-300">
                                         @foreach ($transaction->transport->ekspedisi->logs as $log)
-                                           
                                             @if ($log->status == 'Diterima oleh Penerima')
                                                 <div class="flex items-center pl-2 gap-2 mb-10">
                                                     <div class="">

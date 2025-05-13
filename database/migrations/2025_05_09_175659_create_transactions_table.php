@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('pelanggan');
             $table->bigInteger('customer_no');
             $table->string('address');
-            $table->string('vessel_name');
+
             $table->foreignId('kode_material')->constrained('materials')->cascadeOnDelete();
             $table->bigInteger('qty');
             $table->foreignId('su')->constrained('item_units')->cascadeOnDelete();

@@ -244,6 +244,20 @@
                                     </td>
                                 </tr>
                                 <tr class="border p-2">
+                                    <td class="border  p-2">Vessel Name</td>
+                                    <td class="border  p-2">
+                                        <div class="w-full">
+                                            <input type="text" name="vessel_name" value="{{ $transport->vessel_name }}"
+                                                class="w-full py-1 px-3 border border-gray-500 rounded-md focus:outline-none">
+                                            @error('vessel_name')
+                                                <div class="text-[12px] text-red-500 ">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="border p-2">
                                     <td class="border  p-2">Vehicle No</td>
                                     <td class="border  p-2">
                                         <div class="w-full">

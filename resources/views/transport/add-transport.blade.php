@@ -7,7 +7,8 @@
                 <div class="w-full flex justify-between">
                     <div class="w-full mb-5 border-b pb-5">
                         <h1 class="text-xl font-bold uppercase">Input Data Transport</h1>
-                        <h2 class=" text-gray-500 text-[12px]">Anda dapat memasukan banyak data delivery order kedalam satu data transport.</h2>
+                        <h2 class=" text-gray-500 text-[12px]">Anda dapat memasukan banyak data delivery order kedalam
+                            satu data transport.</h2>
                     </div>
 
                 </div>
@@ -15,7 +16,8 @@
                 <div class="w-full flex flex-col lg:flex-row py-5 text-[12px] border-b">
                     <div class="w-full lg:w-[20%] mb-5 lg:mb-0 lg:pr-5 text-balance">
                         <h1 class="text-xl font-bold ">Data Transport</h1>
-                        <h2 class=" text-gray-500">Silahkan pilih beberapa do untuk memasukkanya kedalam data transport,data transport mewakili satu pengiriman</h2>
+                        <h2 class=" text-gray-500">Silahkan pilih beberapa do untuk memasukkanya kedalam data
+                            transport,data transport mewakili satu pengiriman</h2>
                     </div>
                     <div class="w-full lg:w-[80%] mb-5 lg:mb-0 lg:pr-5 text-balance">
                         <form action="/transport/tambah-data" class="w-full" method="post">
@@ -129,6 +131,20 @@
                                                 @endif
                                             </select>
                                             @error('type_kend')
+                                                <div class="text-[12px] text-red-500 ">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="border p-2">
+                                    <td class="border  p-2">Vessel Name</td>
+                                    <td class="border  p-2">
+                                        <div class="w-full">
+                                            <input type="text" name="vessel_name"
+                                                class="w-full py-1 px-3 border border-gray-500 rounded-md focus:outline-none">
+                                            @error('vessel_name')
                                                 <div class="text-[12px] text-red-500 ">
                                                     {{ $message }}
                                                 </div>

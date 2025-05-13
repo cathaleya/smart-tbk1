@@ -52,6 +52,10 @@
                                 <td class="border  p-2">{{ $transport->incotrelation->name }}</td>
                             </tr>
                             <tr class="border p-2">
+                                <td class="border  p-2">Vessel name</td>
+                                <td class="border  p-2">{{ $transport->vessel_name }}</td>
+                            </tr>
+                            <tr class="border p-2">
                                 <td class="border  p-2">Reference No</td>
                                 <td class="border  p-2">{{ $transport->reference_no }}</td>
                             </tr>
@@ -175,13 +179,15 @@
                                 <td class="border  p-2">
                                     @if ($transport->truck_out !== null)
                                         @if ($transport->eta)
-                                            <button class="py-1 px-5 bg-gray-200 text-gray-500 rounded-md">Finish</button>
+                                            <button
+                                                class="py-1 px-5 bg-gray-200 text-gray-500 rounded-md">Finish</button>
                                         @else
                                             <div class="">
                                                 <form action="/warehouse/update-data/eta" method="post">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{ $transport->id }}">
-                                                    <input type="datetime-local" class="py-2 px-3" name="eta" required>
+                                                    <input type="datetime-local" class="py-2 px-3" name="eta"
+                                                        required>
                                                     <button
                                                         class="py-1 px-5 bg-blue-500 text-white rounded-md">Finish</button>
                                                 </form>
@@ -263,10 +269,7 @@
                                         <td class="border  p-2">Pelanggan</td>
                                         <td class="border  p-2">{{ $transaction->pelanggan }}</td>
                                     </tr>
-                                    <tr class="border p-2">
-                                        <td class="border  p-2">Vessel name</td>
-                                        <td class="border  p-2">{{ $transaction->vessel_name }}</td>
-                                    </tr>
+
                                     <tr class="border p-2">
                                         <td class="border  p-2">Kode Material</td>
                                         <td class="border  p-2">{{ $transaction->material->material_number }}</td>

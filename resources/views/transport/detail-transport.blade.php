@@ -5,7 +5,8 @@
             <div class="w-full ">
                 <div class="w-full flex justify-between">
                     <div class="w-full mb-5 border-b pb-5">
-                        <h1 class="text-xl font-bold">Detail Transport - {{ $transport->tanggal }} - {{ $transport->vehicle_no }} - {{ $transport->transporter->name }}
+                        <h1 class="text-xl font-bold">Detail Transport - {{ $transport->tanggal }} -
+                            {{ $transport->vehicle_no }} - {{ $transport->transporter->name }}
                         </h1>
                         <h2 class=" text-gray-500 text-[12px]">Berikut adalah detail transport.</h2>
                     </div>
@@ -37,6 +38,10 @@
                             <tr class="border p-2">
                                 <td class="border  p-2">Transporter</td>
                                 <td class="border  p-2">{{ $transport->transporter->name }}</td>
+                            </tr>
+                            <tr class="border p-2">
+                                <td class="border  p-2">Vessel name</td>
+                                <td class="border  p-2">{{ $transport->vessel_name }}</td>
                             </tr>
                             <tr class="border p-2">
                                 <td class="border  p-2">Tipe kendaraan (Vehicle Type)</td>
@@ -128,10 +133,7 @@
                                         <td class="border  p-2">Pelanggan</td>
                                         <td class="border  p-2">{{ $transaction->pelanggan }}</td>
                                     </tr>
-                                    <tr class="border p-2">
-                                        <td class="border  p-2">Vessel name</td>
-                                        <td class="border  p-2">{{ $transaction->vessel_name }}</td>
-                                    </tr>
+
                                     <tr class="border p-2">
                                         <td class="border  p-2">Kode Material</td>
                                         <td class="border  p-2">{{ $transaction->material->material_number }}</td>

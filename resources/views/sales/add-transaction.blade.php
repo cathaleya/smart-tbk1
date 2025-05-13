@@ -122,18 +122,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class=" w-full lg:w-[30%]">
-                        <h1 class="font-bold">Vessel Name </h1>
-                        <input required required type="text" name="vessel_name" value="{{ old('vessel_name') }}"
-                            class=" w-full focus:outline-none focus:border-2 focus:border-red-500 py-1 px-3 border border-gray-500 rounded-md"
-                            placeholder="Masukkan nama vessel">
-
-                        @error('vessel_name')
-                            <div class="text-[12px] text-red-500 ">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
+                 
                     <div class=" w-full lg:w-[30%]">
                         <h1 class="font-bold">Kode material </h1>
                         <select required name="kode_material"

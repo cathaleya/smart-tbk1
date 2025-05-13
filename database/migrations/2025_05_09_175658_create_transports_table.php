@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transports', function (Blueprint $table) {
             $table->id();
             $table->string('vehicle_no');
-
+            $table->string('vessel_name');
             $table->string('reference_no');
             $table->timestamp('reference_date');
             $table->string('plant');

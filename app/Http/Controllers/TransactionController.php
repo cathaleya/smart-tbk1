@@ -74,7 +74,6 @@ class TransactionController extends Controller
             'pelanggan' => 'required',
             'customer_no' => 'required',
             'address' => 'required',
-            'vessel_name' => 'required',
             'kode_material' => 'required',
             'qty' => 'required',
             'su' => 'required',
@@ -102,7 +101,7 @@ class TransactionController extends Controller
             'no_po' => $validated['no_po'],
             'ref_doc' => $validated['ref_doc'],
             'pelanggan' => $validated['pelanggan'],
-            'vessel_name' => $validated['vessel_name'],
+
             'kode_material' => $validated['kode_material'],
             'qty' => $validated['qty'],
             'su' => $validated['su'],
@@ -193,7 +192,7 @@ class TransactionController extends Controller
             'pelanggan' => 'required',
             'customer_no' => 'required',
             'address' => 'required',
-            'vessel_name' => 'required',
+
             'kode_material' => 'required',
             'qty' => 'required',
             'su' => 'required',
@@ -219,7 +218,7 @@ class TransactionController extends Controller
             'no_po' => $validated['no_po'],
             'ref_doc' => $validated['ref_doc'],
             'pelanggan' => $validated['pelanggan'],
-            'vessel_name' => $validated['vessel_name'],
+
             'kode_material' => $validated['kode_material'],
             'qty' => $validated['qty'],
             'su' => $validated['su'],
@@ -257,10 +256,9 @@ class TransactionController extends Controller
 
     public function detailTransaction(int $id)
     {
-        $transaction = Transaction::with(['material', 'su', 'slocrelation', 'tipecustomer', 'itemunit', 'transport.tipekendaraan', 'transport.jenissuratjalan', 'transport.incotrelation','transport.ekspedisi'])->where('id', $id)->first();
-        if(!$transaction)
-        {
-            return redirect()->back()->with('notification','Data tidak ditemukan');
+        $transaction = Transaction::with(['material', 'su', 'slocrelation', 'tipecustomer', 'itemunit', 'transport.tipekendaraan', 'transport.jenissuratjalan', 'transport.incotrelation', 'transport.ekspedisi'])->where('id', $id)->first();
+        if (!$transaction) {
+            return redirect()->back()->with('notification', 'Data tidak ditemukan');
         }
 
         return view('sales.detail-transaction', [
